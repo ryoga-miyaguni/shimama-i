@@ -10,7 +10,7 @@ export default function Header() {
             <div className="text-2xl">🌮</div>
             <div>
               <h1 className="text-xl font-bold text-foreground">沖縄タコススタンプラリー</h1>
-              <p className="text-sm text-muted-foreground">2024年12月開催</p>
+              <p className="text-sm text-muted-foreground">2025年12月開催</p>
             </div>
           </Link>
 
@@ -26,7 +26,9 @@ export default function Header() {
             </Link>
           </nav>
 
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">参加申込み</Button>
+          <Link href="/stampcard">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">参加申込み</Button>
+          </Link>
         </div>
       </div>
     </header>
