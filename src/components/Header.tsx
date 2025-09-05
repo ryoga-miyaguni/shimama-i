@@ -27,7 +27,9 @@ export default function Header() {
           </nav>
 
           <Link href="/stampcard">
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">参加申込み</Button>
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+            マイページ
+            </Button>
           </Link>
         </div>
       </div>
