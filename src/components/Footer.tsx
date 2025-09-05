@@ -21,14 +21,14 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">開催期間</h4>
             <div className="text-sm text-muted-foreground">
-              <p>2024年12月1日〜12月31日</p>
+              <p>2025年12月1日〜2月28日</p>
               <p>各店舗の営業時間内</p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-border mt-8 pt-4 text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 沖縄タコススタンプラリー実行委員会. All rights reserved.</p>
+          <p>&copy; 2025 しままーい. All rights reserved.</p>
         </div>
       </div>
     </footer>

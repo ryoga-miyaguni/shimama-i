@@ -25,17 +25,19 @@ export default function HomePage() {
               <span className="text-primary">スタンプラリー</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 text-pretty">
-              学生主催の楽しいタコス巡りイベント！
+              沖縄県内のタコス店をめぐるイベントです！
               <br />
-              沖縄県内の美味しいタコス店を巡って、地域の魅力も発見しよう
+              美味しいタコス店を巡って、地域の魅力も発見しよう！
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-4">
-                🎯 今すぐ参加する
-              </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-4 bg-transparent">
+              <Link href={"stampcard"}>
+                <Button size="lg" className="text-lg px-8 py-4">
+                  🎯 今すぐ参加する
+                </Button>
+              </Link>
+              {/* <Button variant="outline" size="lg" className="text-lg px-8 py-4 bg-transparent">
                 📍 参加店舗を見る
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
@@ -62,9 +64,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  2024年12月1日〜
-                  <br />
-                  12月31日
+                  2025年12月1日〜2月28日
                 </p>
               </CardContent>
             </Card>
@@ -76,9 +76,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  沖縄県内の
-                  <br />
-                  厳選タコス店
+                  沖縄県内の厳選タコス店
                 </p>
               </CardContent>
             </Card>
@@ -90,9 +88,7 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  スタンプ集めで
-                  <br />
-                  素敵な景品
+                  スタンプ集めで素敵な景品
                 </p>
               </CardContent>
             </Card>
@@ -105,8 +101,6 @@ export default function HomePage() {
               <CardContent>
                 <p className="text-muted-foreground">
                   参加費無料
-                  <br />
-                  （飲食代別）
                 </p>
               </CardContent>
             </Card>
@@ -131,14 +125,18 @@ export default function HomePage() {
                   <Badge className="mt-1">2</Badge>
                   <div>
                     <h4 className="font-semibold">店舗巡り</h4>
-                    <p className="text-muted-foreground text-sm">参加店舗でタコスを注文し、スタンプを集めよう</p>
+                    <p className="text-muted-foreground text-sm">
+                      参加店舗でタコスを注文し、スタンプを集めよう
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <Badge className="mt-1">3</Badge>
                   <div>
                     <h4 className="font-semibold">景品ゲット</h4>
-                    <p className="text-muted-foreground text-sm">規定数のスタンプを集めて、素敵な景品をもらおう</p>
+                    <p className="text-muted-foreground text-sm">
+                      規定数のスタンプを集めて、素敵な景品をもらおう
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -153,7 +151,7 @@ export default function HomePage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">協賛企業</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              このイベントを支えてくださる素晴らしい企業の皆様をご紹介します
+              このイベントを支えてくださる素敵な企業の皆様をご紹介します
             </p>
           </div>
 

@@ -16,7 +16,7 @@ export default function OkinawaMap() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             沖縄県内の美味しいタコス店をマップで探索！
             <br />
-            各ポイントをクリックして店舗情報と地域の魅力をチェックしよう。
+            各ポイントをクリックして店舗情報と地域の魅力をチェックしよう！
           </p>
         </div>
 
@@ -37,8 +37,8 @@ export default function OkinawaMap() {
               >
                 <div className="relative">
                   {/* ピンのデザイン */}
-                  <div className="w-8 h-8 bg-red-500 rounded-full border-4 border-white shadow-lg group-hover:scale-110 transition-transform animate-bounce flex items-center justify-center">
-                    <span className="text-white text-xs font-bold">🌮</span>
+                  <div className="w-10 h-10 bg-red-500 rounded-full border-4 border-white shadow-lg group-hover:scale-110 transition-transform animate-bounce flex items-center justify-center">
+                    <span className="text-white text-xl font-bold">🌮</span>
                     <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
                   </div>
 
