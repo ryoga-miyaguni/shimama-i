@@ -6,7 +6,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4">沖縄タコススタンプラリー</h3>
             <p className="text-muted-foreground text-sm">
-              学生主催の楽しいタコス巡りイベント。沖縄の美味しいタコスと地域の魅力を発見しよう！
+              タコス巡りイベント。沖縄の美味しいタコスと地域の魅力を発見しよう！
             </p>
           </div>
 

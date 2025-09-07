@@ -4,6 +4,8 @@ import { useState } from "react"
 import type { MapPoint } from "../../types"
 import { mapPoints } from "@/lib/data"
 import ShopPopup from "./ShopPopup"
+import Image from "next/image"
+
 
 export default function OkinawaMap() {
   const [selectedPoint, setSelectedPoint] = useState<MapPoint | null>(null)
@@ -22,7 +24,14 @@ export default function OkinawaMap() {
 
         <div className="relative max-w-4xl mx-auto">
           <div className="relative rounded-2xl overflow-hidden shadow-lg">
-            <img src="/okinawa-map.png" alt="沖縄県地図" className="w-full h-auto" />
+            <Image
+              src="/okinawa-map.png"
+              alt="クリック可能な店舗がマッピングされた沖縄県の地図"
+              width={1280}
+              height={720}
+              priority
+              className="w-full h-auto object-cover rounded-2xl"
+            />
 
             {/* マップポイント */}
             {mapPoints.map((point) => (
