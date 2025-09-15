@@ -27,7 +27,7 @@ export function AboutSection() {
 
           <Card className="text-center">
             <CardHeader>
-              <div className="text-4xl mb-2" aria-hidden="true">🏪</div>
+              <div className="text-4xl mb-2" aria-hidden="true">🌮</div>
               <CardTitle>参加店舗</CardTitle>
             </CardHeader>
             <CardContent>
@@ -71,9 +71,9 @@ export function AboutSection() {
               <div className="flex items-start space-x-4">
                 <Badge className="mt-1">1</Badge>
                 <div>
-                  <h4 className="font-semibold">参加登録</h4>
+                  <h4 className="font-semibold">スタンプカードGET</h4>
                   <p className="text-muted-foreground text-sm">
-                    公式サイトから参加登録を行い、スタンプカードを受け取ろう
+                    参加店舗へ行って、スタンプカードを受け取ろう
                   </p>
                 </div>
               </div>
@@ -82,7 +82,7 @@ export function AboutSection() {
                 <div>
                   <h4 className="font-semibold">店舗巡り</h4>
                   <p className="text-muted-foreground text-sm">
-                    参加店舗でタコスを注文し、スタンプを集めよう
+                    タコスを注文し、スタンプを集めよう
                   </p>
                 </div>
               </div>

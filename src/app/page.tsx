@@ -12,7 +12,7 @@ export default function HomePage() {
       <HeroSection />
       <OkinawaMap />
       <AboutSection />
-      <SponsorsSection />
+      {/* <SponsorsSection /> */}
       <Footer />
     </main>
   )
