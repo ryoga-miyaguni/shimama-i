@@ -26,11 +26,11 @@ export default function Header() {
             </Link>
           </nav>
 
-          <Link href="/stampcard">
+          {/* <Link href="/stampcard">
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
             マイページ
             </Button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </header>
