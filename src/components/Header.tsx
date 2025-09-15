@@ -10,7 +10,7 @@ export default function Header() {
             <div className="text-2xl">🌮</div>
             <div>
               <h1 className="text-xl font-bold text-foreground">沖縄タコススタンプラリー</h1>
-              <p className="text-sm text-muted-foreground">2025年12月開催</p>
+              <p className="hidden md:flex text-sm text-muted-foreground">2025年12月開催</p>
             </div>
           </Link>
 

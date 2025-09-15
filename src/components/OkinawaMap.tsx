@@ -16,9 +16,13 @@ export default function OkinawaMap() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">参加店舗マップ</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            沖縄県内の美味しいタコス店をマップで探索！
+            沖縄県内の美味しいタコス店を
+            <br className="md:hidden"/>
+            マップで探索！
             <br />
-            各ポイントをクリックして店舗情報と地域の魅力をチェックしよう！
+            各ポイントをクリックして店舗情報と
+            <br className="md:hidden" />
+            地域の魅力をチェックしよう！
           </p>
         </div>
 
