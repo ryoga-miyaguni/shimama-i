@@ -7,13 +7,15 @@ import { SponsorsSection } from "@/components/landing/SponsorsSection"
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <Header />
-      <HeroSection />
-      <OkinawaMap />
-      <AboutSection />
-      {/* <SponsorsSection /> */}
+      <main className="min-h-screen bg-background">
+        <HeroSection />
+        <OkinawaMap />
+        <AboutSection />
+        {/* <SponsorsSection /> */}
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }
