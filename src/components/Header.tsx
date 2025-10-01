@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { QrScannerButton } from "./QrScannerButton"
 
 export default function Header() {
   return (
@@ -28,7 +27,6 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <QrScannerButton />
             <Link href="/stampcard">
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                 マイページ
