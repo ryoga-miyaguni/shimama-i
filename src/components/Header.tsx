@@ -1,7 +1,11 @@
+"use client"
+
 import Link from "next/link"
+import { useSession, signIn, signOut } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 
 export default function Header() {
+  const { data: session, status } = useSession()
   return (
     <header className="bg-card border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
@@ -27,11 +31,19 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Link href="/stampcard">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                マイページ
+            {status === "authenticated" ? (
+              <>
+                <Link href="/stampcard">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    マイページ
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <Button onClick={() => signIn("google")}>
+                Googleでログイン
               </Button>
-            </Link>
+            )}
           </div>
         </div>
       </div>

@@ -1,10 +1,13 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react'
+import Link from 'next/link'
+import { useSession, signOut } from 'next-auth/react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { shops } from '@/lib/data';
+import { toast } from "sonner"
 import { QrScannerButton } from '@/components/QrScannerButton';
 
 
@@ -33,141 +36,77 @@ const SHOP_QR_CODES: Record<string, string> = {
 };
 
 const InteractiveStampCard = () => {
+  const { data: session, status } = useSession()
   const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [selectedTab, setSelectedTab] = useState<'card' | 'progress' | 'badges' | 'qr'>('card');
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedTab, setSelectedTab] = useState<'card' | 'progress' | 'badges'>('card');
   const [showCollectAnimation, setShowCollectAnimation] = useState<string | null>(null);
-  const [registrationData, setRegistrationData] = useState({ name: '', phone: '' });
   const [qrInput, setQrInput] = useState('');
   const [qrError, setQrError] = useState('');
 
+  const fetchUserProgress = useCallback(async () => {
+    if (status !== 'authenticated') {
+      setIsLoading(false)
+      return
+    }
+    try {
+      setIsLoading(true)
+      const response = await fetch('/api/stampcard/progress')
+      if (response.ok) {
+        const data = await response.json()
+        setUserProgress(data)
+      } else {
+        console.error('Failed to fetch user progress')
+        setUserProgress(null)
+      }
+    } catch (error) {
+      console.error('Error fetching user progress:', error)
+      setUserProgress(null)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [status])
+
   useEffect(() => {
-    const savedProgress = localStorage.getItem('okinawa-tacos-progress');
-    if (savedProgress) {
-      const progress = JSON.parse(savedProgress);
-      // userProgressが現在の状態と異なる場合のみ更新
-      if (JSON.stringify(progress) !== JSON.stringify(userProgress)) {
-      setUserProgress(progress);
-      setIsRegistered(true);
-    }
-    }
-  }, [userProgress]);
-
-  const saveProgress = (progress: UserProgress) => {
-    localStorage.setItem('okinawa-tacos-progress', JSON.stringify(progress));
-  };
-
-  const registerUser = () => {
-    if (!registrationData.name || !registrationData.phone) {
-      alert('お名前と電話番号を入力してください');
-      return;
-    }
-
-    const newUserId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    const initialProgress: UserProgress = {
-      stamps: shops.map(shop => ({
-        shopId: shop.id,
-        visitDate: '',
-        isCollected: false,
-        qrCodeUsed: ''
-      })),
-      level: 1,
-      totalVisits: 0,
-      badges: [],
-      userId: newUserId,
-      userName: registrationData.name,
-      createdAt: new Date().toISOString()
-    };
-
-    setUserProgress(initialProgress);
-    setIsRegistered(true);
-    saveProgress(initialProgress);
-  };
-
-  const resetProgress = () => {
-    if (confirm('すべての進捗がリセットされます。本当によろしいですか？')) {
-      localStorage.removeItem('okinawa-tacos-progress');
-      setUserProgress(null);
-      setIsRegistered(false);
-      setRegistrationData({ name: '', phone: '' });
-    }
-  };
+    fetchUserProgress()
+  }, [fetchUserProgress])
 
   // QRコードでスタンプ獲得
-  const collectStampWithQR = (qrCode: string) => {
-    if (!userProgress) return;
-
+  const collectStampWithQR = async (qrCode: string) => {
     setQrError('');
-    
-    // QRコードの検証
-    const shopId = Object.keys(SHOP_QR_CODES).find(id => SHOP_QR_CODES[id] === qrCode);
-    
-    if (!shopId) {
-      setQrError('無効なQRコードです。正しい店舗のQRコードをスキャンしてください。');
-      return;
+    try {
+      const response = await fetch('/api/stampcard/collect', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ qrCode }),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        toast.success(result.message)
+        const shopId = Object.keys(SHOP_QR_CODES).find((id) => SHOP_QR_CODES[id] === qrCode)
+        if (shopId) {
+          setShowCollectAnimation(shopId)
+          setTimeout(() => setShowCollectAnimation(null), 1500)
+        }
+        setQrInput('')
+        await fetchUserProgress() // データを再取得してUIを更新
+      } else {
+        const errorMessage = result.message || 'スタンプの獲得に失敗しました。'
+        setQrError(errorMessage)
+        toast.error(errorMessage)
+      }
+    } catch (error) {
+      setQrError('通信エラーが発生しました。')
+      toast.error('通信エラーが発生しました。')
     }
-
-    // 既に獲得済みかチェック
-    const existingStamp = userProgress.stamps.find(s => s.shopId === shopId);
-    if (existingStamp?.isCollected) {
-      setQrError('この店舗のスタンプは既に獲得済みです。');
-      return;
-    }
-
-    // スタンプ獲得処理
-    setUserProgress(prev => {
-      if (!prev) return null;
-      
-      const newStamps = prev.stamps.map(stamp => 
-        stamp.shopId === shopId
-          ? { 
-              ...stamp, 
-              isCollected: true, 
-              visitDate: new Date().toLocaleDateString('ja-JP'),
-              qrCodeUsed: qrCode
-            }
-          : stamp
-      );
-      
-      const collectedCount = newStamps.filter(s => s.isCollected).length;
-      const newLevel = Math.floor(collectedCount / 1) + 1;
-      const newBadges = [...prev.badges];
-
-      // バッジの獲得チェック
-      if (collectedCount === 1 && !newBadges.includes('初回訪問')) {
-        newBadges.push('初回訪問');
-      }
-      if (collectedCount === 2 && !newBadges.includes('タコス通')) {
-        newBadges.push('タコス通');
-      }
-      if (collectedCount === 3 && !newBadges.includes('沖縄マスター')) {
-        newBadges.push('沖縄マスター');
-      }
-
-      const updatedProgress = {
-        ...prev,
-        stamps: newStamps,
-        level: newLevel,
-        totalVisits: collectedCount,
-        badges: newBadges
-      };
-
-      saveProgress(updatedProgress);
-      return updatedProgress;
-    });
-
-    setShowCollectAnimation(shopId);
-    setQrInput('');
-    setTimeout(() => setShowCollectAnimation(null), 1500);
-    
-    const shop = shops.find(s => s.id === shopId);
-    alert(`🎉 ${shop?.name} のスタンプを獲得しました！`);
-  };
+  }
 
   // 手動QRコード入力
   const handleQrSubmit = () => {
     if (!qrInput.trim()) {
-      setQrError('QRコードを入力してください。');
+      setQrError('QRコードを入力してください。')
       return;
     }
     collectStampWithQR(qrInput.trim().toUpperCase());
@@ -179,62 +118,21 @@ const InteractiveStampCard = () => {
     return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrCode)}`;
   };
 
-  if (!isRegistered) {
+  if (status === 'loading' || isLoading) {
     return (
-      <div className="max-w-md mx-auto p-4">
-        <Card>
-          <CardHeader className="text-center">
-            <div className="text-4xl mb-4">🌮</div>
-            <CardTitle className="text-2xl">スタンプラリー参加登録</CardTitle>
-            <p className="text-muted-foreground">
-              QRコードでスタンプを集めよう！
-            </p>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">お名前 *</label>
-              <input
-                type="text"
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                placeholder="山田 太郎"
-                value={registrationData.name}
-                onChange={(e) => setRegistrationData(prev => ({ ...prev, name: e.target.value }))}
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium mb-2">電話番号 *</label>
-              <input
-                type="tel"
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                placeholder="090-1234-5678"
-                value={registrationData.phone}
-                onChange={(e) => setRegistrationData(prev => ({ ...prev, phone: e.target.value }))}
-              />
-            </div>
-
-            <div className="bg-primary/10 p-4 rounded-lg text-sm">
-              <h4 className="font-semibold mb-2 flex items-center gap-2">
-                📱 使い方
-              </h4>
-              <ul className="space-y-1 text-xs text-muted-foreground">
-                <li>• 参加店舗でタコスを注文</li>
-                <li>• 店舗のQRコードをスキャン</li>
-                <li>• スタンプを自動獲得</li>
-                <li>• 全店制覇で素敵な景品！</li>
-              </ul>
-            </div>
-
-            <Button onClick={registerUser} className="w-full">
-              🎯 スタンプラリーを始める
-            </Button>
-          </CardContent>
-        </Card>
+      <div className="flex justify-center items-center h-64">
+        <p>読み込み中...</p>
       </div>
     );
   }
 
-  if (!userProgress) return null;
+  if (status !== 'authenticated' || !userProgress) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <p>ログインしてください。</p>
+      </div>
+    );
+  }
 
   const progressPercentage = (userProgress.totalVisits / shops.length) * 100;
   const stampsToNextLevel = shops.length - userProgress.totalVisits;
@@ -248,16 +146,23 @@ const InteractiveStampCard = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-4 space-y-6">
+    <div className="max-w-2xl mx-auto p-4 space-y-6 pb-24">
       {/* ユーザー情報 */}
-      <div className="flex items-center justify-between">
-        <div>
+      <div className="grid grid-cols-3 items-center">
+        <div className="flex justify-start">
+          <Link href="/">
+            <Button variant="outline">ホームへ</Button>
+          </Link>
+        </div>
+        <div className="text-center">
           <p className="text-sm text-muted-foreground">参加者</p>
           <p className="font-semibold">{userProgress.userName}</p>
         </div>
-        <Button variant="outline" size="sm" onClick={resetProgress}>
-          🔄 リセット
-        </Button>
+        <div className="flex justify-end">
+          <Button variant="outline" onClick={() => signOut({ callbackUrl: '/' })}>
+            ログアウト
+          </Button>
+        </div>
       </div>
 
       {/* タブナビゲーション */}
@@ -269,14 +174,6 @@ const InteractiveStampCard = () => {
           className="flex-1 text-xs"
         >
           🌮 カード
-        </Button>
-        <Button
-          variant={selectedTab === 'qr' ? 'default' : 'ghost'}
-          size="sm"
-          onClick={() => setSelectedTab('qr')}
-          className="flex-1 text-xs"
-        >
-          📱 QRスキャン
         </Button>
         <Button
           variant={selectedTab === 'progress' ? 'default' : 'ghost'}
@@ -333,92 +230,6 @@ const InteractiveStampCard = () => {
           )}
         </CardContent>
       </Card>
-
-      {/* QRスキャンタブ */}
-      {selectedTab === 'qr' && (
-        <Card>
-          <CardHeader>
-            <div className="flex justify-between items-center">
-              <CardTitle className="flex items-center gap-2">
-                📱 QRコードでスタンプ獲得
-              </CardTitle>
-              <QrScannerButton onScanSuccess={collectStampWithQR} />
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* QRコード入力セクション */}
-            <div className="space-y-4">
-              <div className="text-center">
-                <div className="text-6xl mb-4">📷</div>
-                <p className="text-muted-foreground">
-                  店舗のQRコードをスキャンまたは<br/>
-                  手動でコードを入力してください
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <input
-                  type="text"
-                  placeholder="QRコードを入力（例: TACOS-NAHA-2024-A1B2C3）"
-                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent font-mono text-sm"
-                  value={qrInput}
-                  onChange={(e) => {
-                    setQrInput(e.target.value.toUpperCase());
-                    setQrError('');
-                  }}
-                />
-                
-                <Button onClick={handleQrSubmit} className="w-full" disabled={!qrInput.trim()}>
-                  🎯 スタンプ獲得
-                </Button>
-
-                {qrError && (
-                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                    {qrError}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* テスト用QRコード表示（開発時のみ） */}
-            <div className="border-t pt-6">
-              <h4 className="font-semibold mb-4 text-center">📋 テスト用QRコード</h4>
-              <div className="grid grid-cols-1 gap-4">
-                {shops.map(shop => (
-                  <div key={shop.id} className="border rounded-lg p-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex-shrink-0">
-                        <img 
-                          src={generateQRCodeUrl(shop.id)} 
-                          alt={`${shop.name} QRコード`}
-                          className="w-16 h-16 border rounded"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-medium">{shop.name}</h5>
-                        <p className="text-sm text-muted-foreground font-mono">
-                          {SHOP_QR_CODES[shop.id]}
-                        </p>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => setQrInput(SHOP_QR_CODES[shop.id])}
-                          className="mt-2"
-                        >
-                          コードをコピー
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs text-muted-foreground text-center mt-4">
-                ※ 実際の運用では店舗にのみQRコードを設置します
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      )}
 
       {/* スタンプカードタブ */}
       {selectedTab === 'card' && (
@@ -598,6 +409,13 @@ const InteractiveStampCard = () => {
           </CardContent>
         </Card>
       )}
+
+      {/* フローティングQRスキャンボタン */}
+      <div className="fixed bottom-17 right-10 z-50">
+        <div className="transform scale-200">
+          <QrScannerButton onScanSuccess={collectStampWithQR} />
+        </div>
+      </div>
     </div>
   );
 };

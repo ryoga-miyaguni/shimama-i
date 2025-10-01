@@ -50,8 +50,11 @@
    return (
      <Dialog open={open} onOpenChange={setOpen}>
        <DialogTrigger asChild>
-         <Button variant="outline" size="icon">
-           <QrCodeIcon className="size-5" />
+        <Button
+          size="icon"
+          className="rounded-full bg-orange-400 text-white shadow-lg hover:bg-orange-600"
+        >
+          <QrCodeIcon className="size-6" />
            <span className="sr-only">QRコードをスキャン</span>
          </Button>
        </DialogTrigger>
