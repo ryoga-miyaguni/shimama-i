@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { shops } from '@/lib/data';
+import { QrScannerButton } from '@/components/QrScannerButton';
 
 
 interface StampData {
@@ -39,16 +40,18 @@ const InteractiveStampCard = () => {
   const [registrationData, setRegistrationData] = useState({ name: '', phone: '' });
   const [qrInput, setQrInput] = useState('');
   const [qrError, setQrError] = useState('');
-  const [showQrScanner, setShowQrScanner] = useState(false);
 
   useEffect(() => {
     const savedProgress = localStorage.getItem('okinawa-tacos-progress');
     if (savedProgress) {
       const progress = JSON.parse(savedProgress);
+      // userProgressが現在の状態と異なる場合のみ更新
+      if (JSON.stringify(progress) !== JSON.stringify(userProgress)) {
       setUserProgress(progress);
       setIsRegistered(true);
     }
-  }, []);
+    }
+  }, [userProgress]);
 
   const saveProgress = (progress: UserProgress) => {
     localStorage.setItem('okinawa-tacos-progress', JSON.stringify(progress));
@@ -335,9 +338,12 @@ const InteractiveStampCard = () => {
       {selectedTab === 'qr' && (
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              📱 QRコードでスタンプ獲得
-            </CardTitle>
+            <div className="flex justify-between items-center">
+              <CardTitle className="flex items-center gap-2">
+                📱 QRコードでスタンプ獲得
+              </CardTitle>
+              <QrScannerButton onScanSuccess={collectStampWithQR} />
+            </div>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* QRコード入力セクション */}
