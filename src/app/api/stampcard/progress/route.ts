@@ -43,7 +43,7 @@ export async function GET() {
       badges: profile.badges,
       createdAt: profile.createdAt.toISOString(),
       stamps: shops.map((shop) => {
-        const collected = profile.collectedStamps.find((s: { shopId: string; collectedAt: Date; qrCodeUsed?: string }) => s.shopId === shop.id)
+        const collected = profile.collectedStamps.find((s: { shopId: string; collectedAt: Date; qrCodeUsed?: string | null }) => s.shopId === shop.id)
         return {
           shopId: shop.id,
           isCollected: !!collected,
