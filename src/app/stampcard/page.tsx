@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState, useCallback } from 'react'
-import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -147,24 +146,6 @@ const InteractiveStampCard = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-4 space-y-6 pb-24">
-      {/* ユーザー情報 */}
-      <div className="grid grid-cols-3 items-center">
-        <div className="flex justify-start">
-          <Link href="/">
-            <Button variant="outline">ホームへ</Button>
-          </Link>
-        </div>
-        <div className="text-center">
-          <p className="text-sm text-muted-foreground">参加者</p>
-          <p className="font-semibold">{userProgress.userName}</p>
-        </div>
-        <div className="flex justify-end">
-          <Button variant="outline" onClick={() => signOut({ callbackUrl: '/' })}>
-            ログアウト
-          </Button>
-        </div>
-      </div>
-
       {/* タブナビゲーション */}
       <div className="flex space-x-1 bg-secondary/30 rounded-lg p-1">
         <Button
@@ -411,7 +392,7 @@ const InteractiveStampCard = () => {
       )}
 
       {/* フローティングQRスキャンボタン */}
-      <div className="fixed bottom-17 right-10 z-50">
+      <div className="fixed bottom-17 left-10 z-50">
         <div className="transform scale-200">
           <QrScannerButton onScanSuccess={collectStampWithQR} />
         </div>
