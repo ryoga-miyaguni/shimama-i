@@ -6,8 +6,8 @@
 :root {
   /* Updated color tokens for Okinawa Tacos theme - warm amber and beige palette */
   --background: oklch(0.98 0.02 85); /* light beige #fefce8 */
-  --foreground: oklch(0.35 0.01 240); /* dark gray #374151 */
-  --card: oklch(1 0 0); /* white #ffffff */
+  --foreground: oklch(0.25 0.03 85); /* dark brown */
+  --card: oklch(0.99 0.01 85); /* off-white / cream */
   --card-foreground: oklch(0.35 0.01 240); /* dark gray #374151 */
   --popover: oklch(1 0 0); /* white #ffffff */
   --popover-foreground: oklch(0.35 0.01 240); /* dark gray #374151 */
