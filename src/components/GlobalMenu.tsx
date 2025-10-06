@@ -16,6 +16,7 @@ import {
   HelpCircle,
   Shield,
   Home,
+  Heart,
 } from "lucide-react"
 
 export function GlobalMenu() {
@@ -51,6 +52,12 @@ export function GlobalMenu() {
             <Link href="/reports" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
               <Megaphone className="h-5 w-5" />
               <span>活動報告</span>
+            </Link>
+            <Link href="/thanks" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
+              <Heart className="h-5 w-5" />
+              <span>スペシャル
+                <br/>サンクス
+              </span>
             </Link>
             <div className="border-t my-1"></div>
             <Link href="/help" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
