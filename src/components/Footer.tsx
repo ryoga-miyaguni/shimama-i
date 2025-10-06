@@ -1,8 +1,11 @@
+import { Instagram, Twitter } from "lucide-react"
+import Link from "next/link"
+
 export default function Footer() {
   return (
     <footer className="bg-card border-t border-border mt-16">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4">沖縄タコススタンプラリー</h3>
             <p className="text-muted-foreground text-sm">
@@ -23,6 +26,16 @@ export default function Footer() {
             <div className="text-sm text-muted-foreground">
               <p>2025年12月1日〜2月28日</p>
               <p>各店舗の営業時間内</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">フォローする</h4>
+            <div className="flex space-x-4">
+              <Link href="https://www.instagram.com/tacosta_2025/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
+                <Instagram className="h-6 w-6" />
+                <span className="sr-only">Instagram</span>
+              </Link>
             </div>
           </div>
         </div>

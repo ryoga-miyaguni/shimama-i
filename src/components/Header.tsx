@@ -121,6 +121,7 @@ export default function Header() {
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[200px] lg:w-[250px]">
                       <li><NavigationMenuLink asChild><Link href="/about">自己紹介</Link></NavigationMenuLink></li>
                       <li><NavigationMenuLink asChild><Link href="/reports">活動報告</Link></NavigationMenuLink></li>
+                      <li><NavigationMenuLink asChild><Link href="/thanks">スペシャルサンクス</Link></NavigationMenuLink></li>
                       <li><NavigationMenuLink asChild><Link href="/help">ヘルプ</Link></NavigationMenuLink></li>
                       <li className="border-t pt-2 mt-2"><NavigationMenuLink asChild><Link href="/privacy">プライバシーポリシー</Link></NavigationMenuLink></li>
                     </ul>
