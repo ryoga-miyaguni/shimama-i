@@ -77,7 +77,7 @@ export function HeroSection() {
       <div className="relative z-20 container mx-auto px-4">
         <div className="max-w-2xl text-white md:text-left">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance drop-shadow-lg">
-            <span className="text-gray-100">
+            <span className="text-gray-50">
               沖縄タコス
             </span>
             <br />
