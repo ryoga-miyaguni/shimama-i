@@ -8,7 +8,7 @@ export function AboutSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">イベント概要</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            2024年12月開催！沖縄の美味しいタコスを巡る楽しいスタンプラリーです
+            2024年12月開催!沖縄の美味しいタコスを巡る楽しいスタンプラリーです
           </p>
         </div>
 
