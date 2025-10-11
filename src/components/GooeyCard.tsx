@@ -8,30 +8,24 @@ export default function GooeyCard({
   children,
   contentStyle,
   className,
+  contentClassName,
 }: {
   children: React.ReactNode;
   contentStyle?: CSSProperties;
   className?: string;
+  contentClassName?: string;
 }) {
   return (
     <Card
       className={cn(
-        "relative w-full max-w-sm mx-auto h-54 md:h-60 overflow-hidden bg-pink-400 text-white filter drop-shadow-lg",
+        "relative w-full max-w-sm md:max-w-7xl mx-auto h-52 md:h-96 overflow-hidden bg-pink-400 text-white filter drop-shadow-lg",
+        "[mask-image:url('/gooey-card.png')]",
+        "[mask-size:contain] [mask-repeat:no-repeat] [mask-position:center]",
         className
       )}
-      style={{
-        WebkitMaskImage:
-          "url('/Gemini_Generated_Image_7gk4637gk4637gk4__1_-removebg-preview.png')",
-        maskImage:
-          "url('/Gemini_generated_Image_7gk4637gk4637gk4__1_-removebg-preview.png')",
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-      }}
     >
       <CardContent className="relative z-10 h-full">
-        <div className="absolute" style={contentStyle}>
+        <div className={cn("absolute", contentClassName)} style={contentStyle}>
           {children}
         </div>
       </CardContent>
