@@ -3,7 +3,8 @@
 import type { MapPoint } from "../../types"
 import { mapPoints } from "@/lib/data"
 import Image from "next/image"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
+import GooeyCard from "./GooeyCard"
 
 interface OkinawaMapProps {
   onPointSelect: (point: MapPoint | null) => void;
@@ -21,23 +22,31 @@ export default function OkinawaMap({ onPointSelect }: OkinawaMapProps) {
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        <Card className="max-w-4xl mx-auto shadow-xl border-primary/20 bg-background">
-          <CardHeader className="text-center pb-4">
-            <CardTitle className="text-3xl">参加店舗マップ</CardTitle>
-          </CardHeader>
-          <CardContent className="p-0 overflow-hidden rounded-b-lg">
-            <div className="relative">
-              <Image
-                src="/okinawa-map.png"
-                alt="クリック可能な店舗がマッピングされた沖縄県の地図"
-                width={1280}
-                height={720}
-                priority
-                className="w-full h-auto object-cover"
-              />
+        <GooeyCard
+          className="bg-red-600"
+          contentStyle={{
+            top: "36%",
+            left: "51%",
+            transform: "translateX(-50%)",
+            textAlign: "center",
+          }}
+        >
+          <h3 className="text-4xl font-bold">TACOSMAP</h3>
+        </GooeyCard>
 
-              {/* マップポイント */}
-              {mapPoints.map((point) => (
+        <Card className="max-w-4xl mx-auto shadow-xl border-primary/20 bg-transparent overflow-hidden p-0">
+          <div className="relative">
+            <Image
+              src="/okinawa-map.png"
+              alt="クリック可能な店舗がマッピングされた沖縄県の地図"
+              width={1280}
+              height={720}
+              priority
+              className="w-full h-auto object-cover"
+            />
+
+            {/* マップポイント */}
+            {mapPoints.map((point) => (
                 <button
                   key={point.id}
                   className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
@@ -64,24 +73,22 @@ export default function OkinawaMap({ onPointSelect }: OkinawaMapProps) {
                   </div>
                 </button>
               ))}
-            </div>
-          </CardContent>
-          
-          {/* 凡例 */}
-          <div className="flex justify-center">
-            <Card className="p-4 shadow-md border-primary/10">
-              <div className="flex items-center space-x-4 text-sm gap-0">
-                <div className="flex items-center space-x-2">
-                  <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                    <span className="text-white text-xs">🌮</span>
-                  </div>
-                  <span className="text-foreground font-medium">タコス店舗</span>
-                </div>
-                <div className="text-muted-foreground">ピンをクリックで詳細表示</div>
-              </div>
-            </Card>
           </div>
         </Card>
+        
+        <div className="flex justify-center mt-4">
+          <Card className="p-4 shadow-2xl border-primary/10">
+            <div className="flex items-center space-x-4 text-sm gap-0">
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs">🌮</span>
+                </div>
+                <span className="text-foreground font-medium">タコス店舗</span>
+              </div>
+              <div className="text-muted-foreground">ピンをクリックで詳細表示</div>
+            </div>
+          </Card>
+        </div>
       </div>
     </section>
   )
