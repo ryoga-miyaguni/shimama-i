@@ -23,10 +23,10 @@ export default function OkinawaMap({ onPointSelect }: OkinawaMapProps) {
 
       <div className="container mx-auto px-4 relative z-10">
         <GooeyCard
-          className="bg-red-600 mb-8"
-          contentClassName="top-[36%] md:top-[43%] left-[51%] -translate-x-1/2 text-center"
+          className="bg-red-600 mb-3 md:mb-6"
+          contentClassName="top-[41%] md:top-[43%] left-[52%] md:left-[51%] -translate-x-1/2 text-center"
         >
-          <h3 className="text-4xl md:text-7xl font-bold">タコスマップ</h3>
+          <h3 className="text-4xl md:text-7xl font-bold whitespace-nowrap">タコスマップ</h3>
         </GooeyCard>
 
         <Card className="max-w-4xl mx-auto shadow-xl border-primary/20 bg-transparent overflow-hidden p-0">
