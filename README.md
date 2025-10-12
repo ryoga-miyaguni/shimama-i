@@ -1,8 +1,8 @@
-# しままーい (Shimama-i) - 沖縄タコススタンプラリー
+# 沖縄タコススタンプラリー
 
 沖縄のソウルフードであるタコスを通じて、島の新たな魅力を発見するスタンプラリーイベントの公式Webサイトです。このプロジェクトは、特に大学生を中心とした沖縄の若者に、食文化を楽しみながら地元を再発見してもらうことを目的としています。
 
-[![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FUSERNAME%2FREPOSITORY)
+[デプロイ先](https://shimama-i.vercel.app/)
 
 ## 🌺 イベント概要
 
