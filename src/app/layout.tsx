@@ -16,7 +16,7 @@ const notoSansJp = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shimama-i.vercel.app/"),
-  title: "しままーい! 沖縄タコススタンプラリー",
+  title: "沖縄タコススタンプラリー!",
   description: "沖縄のタコス店を巡りながら地域の魅力を発見するスタンプラリーイベント!",
   verification: {
     google: "HBye-qZFf8HeUmjA8vjjvm-Zkh7DFCD0ia0fqoWEnWw",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "しままーい! 沖縄タコススタンプラリー",
+    title: "沖縄タコススタンプラリー!",
     description: "沖縄のタコス店を巡りながら地域の魅力を発見するスタンプラリーイベント!",
     url: "https://shimama-i.vercel.app/",
     siteName: "沖縄タコススタンプラリー",

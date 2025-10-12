@@ -6,8 +6,8 @@ const Loading = () => {
       <Image
         src="/icon.jpg"
         alt="Loading..."
-        width={50}
-        height={50}
+        width={200}
+        height={200}
       />
     </div>
   );
