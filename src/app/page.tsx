@@ -8,6 +8,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
       <HeroSection />
       <MapSection />
+      {/* <InstagramPost url="https://www.instagram.com/p/DOuplp-CYRR/" /> */}
       <AboutSection />
       {/* <SponsorsSection /> */}
     </div>
