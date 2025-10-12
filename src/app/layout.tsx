@@ -15,9 +15,31 @@ const notoSansJp = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "沖縄タコススタンプラリー 2025",
-  description:
-    "沖縄県内の美味しいタコス店を巡るスタンプラリーイベント！地域の魅力を発見しながら、素敵な景品をゲットしよう！",
+  metadataBase: new URL("https://shimama-i.vercel.app/"),
+  title: "しままーい! 沖縄タコススタンプラリー",
+  description: "沖縄のタコス店を巡りながら地域の魅力を発見するスタンプラリーイベント!",
+  verification: {
+    google: "HBye-qZFf8HeUmjA8vjjvm-Zkh7DFCD0ia0fqoWEnWw",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "しままーい! 沖縄タコススタンプラリー",
+    description: "沖縄のタコス店を巡りながら地域の魅力を発見するスタンプラリーイベント!",
+    url: "https://shimama-i.vercel.app/",
+    siteName: "沖縄タコススタンプラリー",
+    images: [
+      {
+        url: "/ogp.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({
