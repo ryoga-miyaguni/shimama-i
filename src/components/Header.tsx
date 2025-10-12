@@ -130,8 +130,9 @@ export default function Header() {
               </NavigationMenuList>
             </NavigationMenu>
           </nav>
-
-          <div className="flex items-center gap-2">
+          
+          {/* ログイン機能をコメントアウト */}
+          {/* <div className="flex items-center gap-2">
             {status === "authenticated" ? (
                 <Link href="/stampcard">
                   <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -143,7 +144,7 @@ export default function Header() {
                 Googleでログイン
               </Button>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </header>
