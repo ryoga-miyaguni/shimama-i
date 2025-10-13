@@ -4,14 +4,14 @@ export interface Shop {
   description: string
   image: string
   location: {
-    lat: number
-    lng: number
     address: string
   }
   specialties: string[]
   hours: string
   phone?: string
   website?: string
+  snsUrl?: string
+  position: { x: number; y: number }
 }
 
 export interface RegionAttraction {
@@ -37,7 +37,7 @@ export interface MapPoint {
   shop: Shop
   attraction: RegionAttraction
   position: {
-    x: number // percentage from left
-    y: number // percentage from top
+    x: number 
+    y: number
   }
 }

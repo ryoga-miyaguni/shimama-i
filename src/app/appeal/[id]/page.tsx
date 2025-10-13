@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation"
 import { attractions, shops } from "@/lib/data"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
+import ImagePlaceholder from "@/components/ImagePlaceholder"
 
 interface AppealPageProps {
   params: Promise<{ id: string }>
@@ -24,8 +23,6 @@ export default async function AppealPage({ params }: AppealPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           {/* パンくずリスト */}
@@ -39,7 +36,16 @@ export default async function AppealPage({ params }: AppealPageProps) {
 
           {/* メイン画像 */}
           <div className="relative h-64 md:h-96 w-full rounded-xl overflow-hidden mb-8">
-            <Image src={attraction.image || "/placeholder.svg"} alt={attraction.title} fill className="object-cover" />
+            {attraction.image ? (
+              <Image
+                src={attraction.image}
+                alt={attraction.title}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <ImagePlaceholder />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute bottom-6 left-6 text-white">
               <div className="flex items-center gap-3 mb-2">
@@ -95,12 +101,16 @@ export default async function AppealPage({ params }: AppealPageProps) {
                   <CardContent>
                     <div className="flex flex-col md:flex-row gap-4">
                       <div className="relative h-32 w-full md:w-48 rounded-lg overflow-hidden flex-shrink-0">
-                        <Image
-                          src={relatedShop.image || "/placeholder.svg"}
-                          alt={relatedShop.name}
-                          fill
-                          className="object-cover"
-                        />
+                        {relatedShop.image ? (
+                          <Image
+                            src={relatedShop.image}
+                            alt={relatedShop.name}
+                            fill
+                            className="object-cover"
+                          />
+                        ) : (
+                          <ImagePlaceholder />
+                        )}
                       </div>
                       <div className="flex-1">
                         <h4 className="text-lg font-semibold mb-2">{relatedShop.name}</h4>
@@ -174,8 +184,6 @@ export default async function AppealPage({ params }: AppealPageProps) {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   )
 }
