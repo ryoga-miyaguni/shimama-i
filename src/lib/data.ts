@@ -3,46 +3,104 @@ import type { Shop, RegionAttraction, Sponsor, MapPoint } from "../../types"
 export const shops: Shop[] = [
   {
     id: "1",
-    name: "タコス・デ・オキナワ",
+    name: "タコス・デ・オキナワ  ※実際に存在する店舗ではありません（掲載イメージです）",
     description: "沖縄の新鮮な食材を使った本格的なタコスが自慢のお店です。",
     image: "/colorful-tacos-with-okinawan-ingredients.png",
-    location: {
-      lat: 26.2124,
-      lng: 127.6792,
-      address: "那覇市国際通り1-1-1",
-    },
+    location: { address: "那覇市国際通り1-1-1" },
+    position: { x: 50, y: 25 },
     specialties: ["ゴーヤータコス", "ラフテータコス", "海ぶどうサルサ"],
     hours: "11:00-21:00",
     phone: "098-123-4567",
   },
   {
     id: "2",
-    name: "シーサータコス",
+    name: "ファミーユ",
     description: "伝統的な沖縄料理とメキシカンの融合が楽しめるお店です。",
-    image: "/traditional-okinawan-tacos-with-shisa-decoration.png",
-    location: {
-      lat: 26.3344,
-      lng: 127.8056,
-      address: "読谷村座喜味2956-1",
-    },
-    specialties: ["アグー豚タコス", "紅芋チップス", "さんぴん茶"],
-    hours: "10:00-20:00",
-    phone: "098-987-6543",
+    image: "",
+    location: { address: "名護市屋部35番地" },
+    position: { x: 50, y: 35 },
+    specialties: ["タコス", "タコライス"],
+    hours: "平日:11:00 ~ 17:00 休日:10:00 ~ 17:00 (SNSを確認してください)",
+    phone: "080-4001-4528",
+    snsUrl: "https://www.instagram.com/famille.okinawa88/",
   },
   {
     id: "3",
-    name: "ビーチサイドタコス",
+    name: "TACOBOX OKINAWA",
     description: "美しい海を眺めながら絶品タコスを楽しめるロケーション抜群のお店。",
-    image: "/beachside-taco-restaurant-with-ocean-view.png",
-    location: {
-      lat: 26.6401,
-      lng: 128.0011,
-      address: "名護市喜瀬1808",
-    },
+    image: "",
+    location: { address: "嘉手納町屋良１０２６−３ 道の駅かでな" },
+    position: { x: 23, y: 56 },
     specialties: ["フィッシュタコス", "マンゴーサルサ", "オリオンビール"],
-    hours: "9:00-22:00",
-    phone: "0980-12-3456",
+    hours: "11:00 ~ 18:00",
+    phone: "090-9781-6059",
   },
+  {
+    id: "4",
+    name: "TANK/DINER",
+    description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    image: "",
+    location: { address: "沖縄市中央２丁目６−５" },
+    position: { x: 33, y: 62 }, 
+    specialties: [""],
+    hours: "11:00 ~ 16:00（ラストオーダー 15:30） 定休日: 水",
+    phone: "090-6866-5654",
+  },
+  {
+    id: "5",
+    name: "タコスカフェ タコロコ",
+    description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    image: "",
+    location: { address: "北谷町美浜９−２ アメリカンビレッジ B棟 2F" },
+    position: { x: 21, y: 66 }, 
+    specialties: [""],
+    hours: "11:00 ~ 15:30, 17:00 ~ 21:30",
+    phone: "098-923-2320",
+  },
+  {
+    id: "6",
+    name: "カフェ マーメイド",
+    description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    image: "",
+    location: { address: "中城村字久場1963 中城モール一階" },
+    position: { x: 32, y: 72 }, 
+    specialties: [""],
+    hours: "11:00 ～ 20:00（ラストオーダー 19:00）",
+    phone: "098-895-6188",
+  },
+  {
+    id: "7",
+    name: "TeaRoom・SORA",
+    description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    image: "",
+    location: { address: "浦添市経塚５１８ テナントビル 1-A てぃーだ" },
+    position: { x: 20, y: 76 }, 
+    specialties: [""],
+    hours: "8:00 ～ 24:00",
+    phone: "098-874-2081",
+  },
+  {
+    id: "8",
+    name: "ローレル",
+    description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    image: "",
+    location: { address: "南城市つきしろ１６７８−２１９" },
+    position: { x: 27, y: 86 }, 
+    specialties: [""],
+    hours: "11:00 ～ 20:00 (定休日 月・第2第4木曜)",
+    phone: "098-917-6084",
+  },
+  {
+    id: "9",
+    name: "GRINGO",
+    description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    image: "",
+    location: { address: "糸満市西崎6-4-5 マルキヨ開発ビル F1" },
+    position: { x: 7, y: 88 }, 
+    specialties: [""],
+    hours: "11:00 ～ 20:30",
+    phone: "098-996-1197",
+  },      
 ]
 
 export const attractions: RegionAttraction[] = [
@@ -69,6 +127,54 @@ export const attractions: RegionAttraction[] = [
     description: "象の鼻のような形をした断崖絶壁で、絶景スポットとして有名です。",
     image: "/manzamo-cliff-okinawa-scenic-ocean-view.png",
     category: "nature",
+  },
+  {
+    id: "4",
+    shopId: "4",
+    title: "コザミュージックタウン",
+    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
+    image: "", // 画像がないためプレースホルダーが表示されます
+    category: "culture",
+  },
+  {
+    id: "5",
+    shopId: "5",
+    title: "コザミュージックタウン",
+    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
+    image: "", // 画像がないためプレースホルダーが表示されます
+    category: "culture",
+  },
+  {
+    id: "6",
+    shopId: "6",
+    title: "コザミュージックタウン",
+    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
+    image: "", // 画像がないためプレースホルダーが表示されます
+    category: "culture",
+  },
+  {
+    id: "7",
+    shopId: "7",
+    title: "コザミュージックタウン",
+    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
+    image: "", // 画像がないためプレースホルダーが表示されます
+    category: "culture",
+  },
+  {
+    id: "8",
+    shopId: "8",
+    title: "コザミュージックタウン",
+    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
+    image: "", // 画像がないためプレースホルダーが表示されます
+    category: "culture",
+  },
+  {
+    id: "9",
+    shopId: "9",
+    title: "コザミュージックタウン",
+    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
+    image: "", // 画像がないためプレースホルダーが表示されます
+    category: "culture",
   },
 ]
 
@@ -97,23 +203,13 @@ export const sponsors: Sponsor[] = [
   },
 ]
 
-export const mapPoints: MapPoint[] = [
-  {
-    id: "1",
-    shop: shops[0],
-    attraction: attractions[0],
-    position: { x: 45, y: 65 }, // 那覇市周辺
-  },
-  {
-    id: "2",
-    shop: shops[1],
-    attraction: attractions[1],
-    position: { x: 35, y: 45 }, // 読谷村周辺
-  },
-  {
-    id: "3",
-    shop: shops[2],
-    attraction: attractions[2],
-    position: { x: 55, y: 25 }, // 名護市周辺
-  },
-]
+// shops 配列と attractions 配列から mapPoints を自動的に生成
+export const mapPoints: MapPoint[] = shops.map((shop) => {
+  const attraction = attractions.find((attr) => attr.shopId === shop.id)
+  return {
+    id: shop.id,
+    shop: shop,
+    attraction: attraction!, // shopIdが一致するattractionは必ず存在すると仮定
+    position: shop.position,
+  }
+})

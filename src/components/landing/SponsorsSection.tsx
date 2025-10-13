@@ -4,6 +4,7 @@ import { sponsors } from "@/lib/data"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import ContactForm from "@/components/ContactForm"
+import ImagePlaceholder from "@/components/ImagePlaceholder"
 
 export function SponsorsSection() {
   return (
@@ -20,13 +21,17 @@ export function SponsorsSection() {
           {sponsors.map((sponsor) => (
             <Card key={sponsor.id} className="group hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="relative h-24 w-full mb-4">
-                  <Image
-                    src={sponsor.logo || "/placeholder.svg"}
-                    alt={sponsor.name}
-                    fill
-                    className="object-contain"
-                  />
+                <div className="relative h-24 w-full mb-4 flex items-center justify-center">
+                  {sponsor.logo ? (
+                    <Image
+                      src={sponsor.logo}
+                      alt={sponsor.name}
+                      fill
+                      className="object-contain"
+                    />
+                  ) : (
+                    <ImagePlaceholder />
+                  )}
                 </div>
                 <div className="flex items-center justify-center gap-2">
                   <CardTitle className="text-lg">{sponsor.name}</CardTitle>

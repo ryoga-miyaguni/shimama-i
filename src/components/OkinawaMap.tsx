@@ -1,16 +1,16 @@
 "use client"
 
 import type { MapPoint } from "../../types"
-import { mapPoints } from "@/lib/data"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import GooeyCard from "./GooeyCard"
 
 interface OkinawaMapProps {
+  points: MapPoint[];
   onPointSelect: (point: MapPoint | null) => void;
 }
 
-export default function OkinawaMap({ onPointSelect }: OkinawaMapProps) {
+export default function OkinawaMap({ points, onPointSelect }: OkinawaMapProps) {
   return (
     <section
       id="map" className="relative py-16 mt-24 md:mt-32"
@@ -41,7 +41,7 @@ export default function OkinawaMap({ onPointSelect }: OkinawaMapProps) {
             />
 
             {/* マップポイント */}
-            {mapPoints.map((point) => (
+            {points.map((point) => (
                 <button
                   key={point.id}
                   className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
@@ -61,7 +61,9 @@ export default function OkinawaMap({ onPointSelect }: OkinawaMapProps) {
                     {/* 店舗名のツールチップ */}
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-white text-gray-800 text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-200">
                       <div className="font-semibold">{point.shop.name}</div>
-                      <div className="text-xs text-gray-600">{point.shop.location.address}</div>
+                      <div className="text-xs text-gray-600">
+                        {point.shop.location.address.split(/[市町村]/)[0] + point.shop.location.address.match(/[市町村]/)}
+                      </div>
                       {/* ツールチップの矢印 */}
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white"></div>
                     </div>
