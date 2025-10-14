@@ -42,21 +42,20 @@ export default function OkinawaMap({ points, onPointSelect }: OkinawaMapProps) {
 
             {/* マップポイント */}
             {points.map((point) => (
-                <button
+                <div
                   key={point.id}
                   className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
                   style={{
                     left: `${point.position.x}%`,
                     top: `${point.position.y}%`,
                   }}
-                  onClick={() => onPointSelect(point)}
                 >
-                  <div className="relative">
+                  <div className="relative flex items-center justify-center">
                     {/* ピンのデザイン */}
-                    <div className="w-10 h-10 bg-red-500 rounded-full border-4 border-white shadow-lg group-hover:scale-110 transition-transform animate-bounce flex items-center justify-center">
-                      <span className="text-white text-xl font-bold">🌮</span>
+                    <button onClick={() => onPointSelect(point)} className="relative w-8 h-8 md:w-10 md:h-10 bg-red-500 rounded-full border-2 md:border-4 border-white shadow-lg group-hover:scale-110 transition-transform animate-bounce flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                      <span className="text-white text-base md:text-xl font-bold">🌮</span>
                       <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
-                    </div>
+                    </button>
 
                     {/* 店舗名のツールチップ */}
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-white text-gray-800 text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-200">
@@ -68,7 +67,7 @@ export default function OkinawaMap({ points, onPointSelect }: OkinawaMapProps) {
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white"></div>
                     </div>
                   </div>
-                </button>
+                </div>
               ))}
           </div>
         </Card>

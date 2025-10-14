@@ -6,7 +6,7 @@ export const shops: Shop[] = [
     name: "タコス・デ・オキナワ  ※実際に存在する店舗ではありません（掲載イメージです）",
     description: "沖縄の新鮮な食材を使った本格的なタコスが自慢のお店です。",
     image: "/colorful-tacos-with-okinawan-ingredients.png",
-    location: { address: "那覇市国際通り1-1-1" },
+    location: { address: "名護市" },
     position: { x: 50, y: 25 },
     specialties: ["ゴーヤータコス", "ラフテータコス", "海ぶどうサルサ"],
     hours: "11:00-21:00",
@@ -105,7 +105,7 @@ export const shops: Shop[] = [
 
 export const attractions: RegionAttraction[] = [
   {
-    id: "1",
+    id: "a1",
     shopId: "1",
     title: "国際通り",
     description: "沖縄最大の繁華街で、お土産店やグルメスポットが立ち並ぶ観光の中心地です。",
@@ -113,67 +113,67 @@ export const attractions: RegionAttraction[] = [
     category: "culture",
   },
   {
-    id: "2",
-    shopId: "2",
-    title: "座喜味城跡",
-    description: "世界遺産に登録された美しい城跡で、沖縄の歴史を感じることができます。",
-    image: "/zakimi-castle-ruins-okinawa-world-heritage-site.png",
-    category: "culture",
+    id: "a2",
+    shopId: "2", // ファミーユ
+    title: "ナゴパイナップルパーク",
+    description: "パイナップルについて学び、味わい、楽しめるテーマパーク。パイナップル号に乗って園内を冒険しよう。",
+    image: "",
+    category: "activity",
   },
   {
-    id: "3",
-    shopId: "3",
-    title: "万座毛",
-    description: "象の鼻のような形をした断崖絶壁で、絶景スポットとして有名です。",
-    image: "/manzamo-cliff-okinawa-scenic-ocean-view.png",
+    id: "a3",
+    shopId: "3", // TACOBOX OKINAWA
+    title: "道の駅かでな",
+    description: "嘉手納基地の滑走路を一望できる展望台が人気。沖縄のお土産や特産品も揃っています。",
+    image: "",
     category: "nature",
   },
   {
-    id: "4",
+    id: "a4",
     shopId: "4",
     title: "コザミュージックタウン",
     description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
-    image: "", // 画像がないためプレースホルダーが表示されます
+    image: "",
     category: "culture",
   },
   {
-    id: "5",
-    shopId: "5",
-    title: "コザミュージックタウン",
-    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
-    image: "", // 画像がないためプレースホルダーが表示されます
+    id: "a5",
+    shopId: "5", // タコスカフェ タコロコ
+    title: "美浜アメリカンビレッジ",
+    description: "カラフルな建物が並ぶシーサイドタウン。ショッピングやグルメ、映画などが楽しめます。",
+    image: "",
     category: "culture",
   },
   {
-    id: "6",
-    shopId: "6",
-    title: "コザミュージックタウン",
-    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
-    image: "", // 画像がないためプレースホルダーが表示されます
+    id: "a6",
+    shopId: "6", // カフェ マーメイド
+    title: "中城城跡",
+    description: "世界遺産の一つ。美しい曲線を描く城壁が特徴で、歴史と絶景を同時に楽しめます。",
+    image: "",
     category: "culture",
   },
   {
-    id: "7",
-    shopId: "7",
-    title: "コザミュージックタウン",
-    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
-    image: "", // 画像がないためプレースホルダーが表示されます
+    id: "a7",
+    shopId: "7", // TeaRoom・SORA
+    title: "浦添大公園",
+    description: "長大なローラー滑り台が人気の公園。歴史的な史跡も点在し、散策にも最適です。",
+    image: "",
     category: "culture",
   },
   {
-    id: "8",
-    shopId: "8",
-    title: "コザミュージックタウン",
-    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
-    image: "", // 画像がないためプレースホルダーが表示されます
+    id: "a8",
+    shopId: "8", // ローレル
+    title: "斎場御嶽（せーふぁうたき）",
+    description: "琉球王国最高の聖地とされる世界遺産。神秘的な雰囲気の中で自然の力を感じられます。",
+    image: "",
     category: "culture",
   },
   {
-    id: "9",
-    shopId: "9",
-    title: "コザミュージックタウン",
-    description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
-    image: "", // 画像がないためプレースホルダーが表示されます
+    id: "a9",
+    shopId: "9", // GRINGO
+    title: "ひめゆりの塔",
+    description: "沖縄戦の悲劇を伝える平和祈念施設。平和の尊さを学ぶことができます。",
+    image: "",
     category: "culture",
   },
 ]
@@ -207,7 +207,8 @@ export const sponsors: Sponsor[] = [
 export const mapPoints: MapPoint[] = shops.map((shop) => {
   const attraction = attractions.find((attr) => attr.shopId === shop.id)
   return {
-    id: shop.id,
+    // shop.idとattraction.idを組み合わせて、アプリケーション全体で一意なIDを生成する
+    id: `map-point-${shop.id}-${attraction!.id}`,
     shop: shop,
     attraction: attraction!, // shopIdが一致するattractionは必ず存在すると仮定
     position: shop.position,

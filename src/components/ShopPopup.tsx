@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import type { Shop, RegionAttraction } from "../../types"
+import type { MapPoint } from "../../types"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -11,13 +11,13 @@ import ImagePlaceholder from "@/components/ImagePlaceholder"
 import { Instagram } from "lucide-react"
 
 interface ShopPopupProps {
-  shop: Shop
-  attraction: RegionAttraction
+  point: MapPoint
   onClose: () => void
 }
 
-export default function ShopPopup({ shop, attraction, onClose }: ShopPopupProps) {
+export default function ShopPopup({ point, onClose }: ShopPopupProps) {
   const [activeTab, setActiveTab] = useState<"shop" | "attraction">("shop")
+  const { shop, attraction } = point
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
