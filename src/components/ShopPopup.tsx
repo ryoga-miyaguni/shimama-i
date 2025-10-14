@@ -47,7 +47,7 @@ export default function ShopPopup({ point, onClose }: ShopPopupProps) {
         <CardContent>
           {activeTab === "shop" ? (
             <div className="space-y-4">
-              <div className="relative h-48 w-full rounded-lg overflow-hidden">
+              <div className="relative aspect-video w-full rounded-lg overflow-hidden">
                 {shop.image ? (
                   <Image
                     src={shop.image}
@@ -101,37 +101,39 @@ export default function ShopPopup({ point, onClose }: ShopPopupProps) {
               </div>
             </div>
           ) : (
-            <div className="space-y-4">
-              <div className="relative h-48 w-full rounded-lg overflow-hidden">
-                {attraction.image ? (
-                  <Image
-                    src={attraction.image}
-                    alt={attraction.title}
-                    fill
-                    className="object-cover"
-                  />
-                ) : (
-                  <ImagePlaceholder />
-                )}
-              </div>
-
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <CardTitle className="text-xl">{attraction.title}</CardTitle>
-                  <Badge variant="outline">
-                    {attraction.category === "nature" && "🌿 自然"}
-                    {attraction.category === "culture" && "🏛️ 文化"}
-                    {attraction.category === "food" && "🍽️ グルメ"}
-                    {attraction.category === "activity" && "🎯 アクティビティ"}
-                  </Badge>
+            attraction && (
+              <div className="space-y-4">
+                <div className="relative aspect-video w-full rounded-lg overflow-hidden">
+                  {attraction.image ? (
+                    <Image
+                      src={attraction.image}
+                      alt={attraction.title}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <ImagePlaceholder />
+                  )}
                 </div>
-                <p className="text-muted-foreground mb-4">{attraction.description}</p>
-
-                <Link href={`/appeal/${attraction.id}`}>
-                  <Button className="w-full">もっと詳しく</Button>
-                </Link>
+  
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <CardTitle className="text-xl">{attraction.title}</CardTitle>
+                    <Badge variant="outline">
+                      {attraction.category === "nature" && "🌿 自然"}
+                      {attraction.category === "culture" && "🏛️ 文化"}
+                      {attraction.category === "food" && "🍽️ グルメ"}
+                      {attraction.category === "activity" && "🎯 アクティビティ"}
+                    </Badge>
+                  </div>
+                  <p className="text-muted-foreground mb-4">{attraction.description}</p>
+  
+                  <Link href={`/appeal/${attraction.id}`}>
+                    <Button className="w-full">もっと詳しく</Button>
+                  </Link>
+                </div>
               </div>
-            </div>
+            )
           )}
         </CardContent>
       </Card>

@@ -8,9 +8,31 @@ import GooeyCard from "./GooeyCard"
 interface OkinawaMapProps {
   points: MapPoint[];
   onPointSelect: (point: MapPoint | null) => void;
+  isMobile: boolean;
 }
 
-export default function OkinawaMap({ points, onPointSelect }: OkinawaMapProps) {
+const regionColorClasses = {
+  north: {
+    bg: "bg-green-500",
+    ring: "focus:ring-green-500",
+    ping: "bg-green-500",
+  },
+  central: {
+    bg: "bg-red-500",
+    ring: "focus:ring-red-500",
+    ping: "bg-red-500",
+  },
+  south: {
+    bg: "bg-yellow-500",
+    ring: "focus:ring-yellow-500",
+    ping: "bg-yellow-500",
+  },
+}; 
+
+export default function OkinawaMap({ points, onPointSelect, isMobile }: OkinawaMapProps) {
+  const handlePinClick = (point: MapPoint) => {
+    if (!isMobile) onPointSelect(point)
+  }
   return (
     <section
       id="map" className="relative py-16 mt-24 md:mt-32"
@@ -41,7 +63,9 @@ export default function OkinawaMap({ points, onPointSelect }: OkinawaMapProps) {
             />
 
             {/* マップポイント */}
-            {points.map((point) => (
+            {points.map((point) => {
+              const color = regionColorClasses[point.region] || regionColorClasses.central;
+              return (
                 <div
                   key={point.id}
                   className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
@@ -52,9 +76,10 @@ export default function OkinawaMap({ points, onPointSelect }: OkinawaMapProps) {
                 >
                   <div className="relative flex items-center justify-center">
                     {/* ピンのデザイン */}
-                    <button onClick={() => onPointSelect(point)} className="relative w-8 h-8 md:w-10 md:h-10 bg-red-500 rounded-full border-2 md:border-4 border-white shadow-lg group-hover:scale-110 transition-transform animate-bounce flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    <button onClick={() => handlePinClick(point)} className={`relative w-8 h-8 md:w-10 md:h-10 ${color.bg} rounded-full border-2 md:border-4 border-white shadow-lg group-hover:scale-110 transition-transform animate-bounce flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 ${color.ring}`}>
                       <span className="text-white text-base md:text-xl font-bold">🌮</span>
-                      <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
+                      {/* アニメーション用のdivも色を合わせる */}
+                      <div className={`absolute inset-0 ${color.ping} rounded-full animate-ping opacity-75`}></div>
                     </button>
 
                     {/* 店舗名のツールチップ */}
@@ -68,18 +93,25 @@ export default function OkinawaMap({ points, onPointSelect }: OkinawaMapProps) {
                     </div>
                   </div>
                 </div>
-              ))}
+              );
+            })}
           </div>
         </Card>
         
-        <div className="flex justify-center mt-4">
+        <div className="hidden md:flex justify-center mt-4">
           <Card className="p-4 shadow-2xl border-primary/10">
-            <div className="flex items-center space-x-4 text-sm gap-0">
+            <div className="flex items-center space-x-6 text-sm">
               <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">🌮</span>
-                </div>
-                <span className="text-foreground font-medium">タコス店舗</span>
+                <div className={`w-5 h-5 ${regionColorClasses.north.bg} rounded-full`}></div>
+                <span className="text-foreground font-medium">北部</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className={`w-5 h-5 ${regionColorClasses.central.bg} rounded-full`}></div>
+                <span className="text-foreground font-medium">中部</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className={`w-5 h-5 ${regionColorClasses.south.bg} rounded-full`}></div>
+                <span className="text-foreground font-medium">南部</span>
               </div>
               <div className="text-muted-foreground">ピンをクリックで詳細表示</div>
             </div>
