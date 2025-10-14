@@ -14,8 +14,7 @@ export function MapSection() {
       <OkinawaMap points={mapPoints} onPointSelect={setSelectedPoint} />
       {selectedPoint && (
         <ShopPopup
-          shop={selectedPoint.shop}
-          attraction={selectedPoint.attraction}
+          point={selectedPoint}
           onClose={() => setSelectedPoint(null)}
         />
       )}
