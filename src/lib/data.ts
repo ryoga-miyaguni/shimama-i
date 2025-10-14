@@ -5,6 +5,7 @@ export const shops: Shop[] = [
     id: "1",
     name: "タコス・デ・オキナワ  ※実際に存在する店舗ではありません（掲載イメージです）",
     description: "沖縄の新鮮な食材を使った本格的なタコスが自慢のお店です。",
+    region: "north",
     image: "/colorful-tacos-with-okinawan-ingredients.png",
     location: { address: "名護市" },
     position: { x: 50, y: 25 },
@@ -16,6 +17,7 @@ export const shops: Shop[] = [
     id: "2",
     name: "ファミーユ",
     description: "伝統的な沖縄料理とメキシカンの融合が楽しめるお店です。",
+    region: "north",
     image: "",
     location: { address: "名護市屋部35番地" },
     position: { x: 50, y: 35 },
@@ -28,6 +30,7 @@ export const shops: Shop[] = [
     id: "3",
     name: "TACOBOX OKINAWA",
     description: "美しい海を眺めながら絶品タコスを楽しめるロケーション抜群のお店。",
+    region: "central",
     image: "",
     location: { address: "嘉手納町屋良１０２６−３ 道の駅かでな" },
     position: { x: 23, y: 56 },
@@ -39,6 +42,7 @@ export const shops: Shop[] = [
     id: "4",
     name: "TANK/DINER",
     description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    region: "central",
     image: "",
     location: { address: "沖縄市中央２丁目６−５" },
     position: { x: 33, y: 62 }, 
@@ -50,6 +54,7 @@ export const shops: Shop[] = [
     id: "5",
     name: "タコスカフェ タコロコ",
     description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    region: "central",
     image: "",
     location: { address: "北谷町美浜９−２ アメリカンビレッジ B棟 2F" },
     position: { x: 21, y: 66 }, 
@@ -61,6 +66,7 @@ export const shops: Shop[] = [
     id: "6",
     name: "カフェ マーメイド",
     description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    region: "central",
     image: "",
     location: { address: "中城村字久場1963 中城モール一階" },
     position: { x: 32, y: 72 }, 
@@ -72,6 +78,7 @@ export const shops: Shop[] = [
     id: "7",
     name: "TeaRoom・SORA",
     description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    region: "central",
     image: "",
     location: { address: "浦添市経塚５１８ テナントビル 1-A てぃーだ" },
     position: { x: 20, y: 76 }, 
@@ -83,6 +90,7 @@ export const shops: Shop[] = [
     id: "8",
     name: "ローレル",
     description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    region: "south",
     image: "",
     location: { address: "南城市つきしろ１６７８−２１９" },
     position: { x: 27, y: 86 }, 
@@ -94,6 +102,7 @@ export const shops: Shop[] = [
     id: "9",
     name: "GRINGO",
     description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
+    region: "south",
     image: "",
     location: { address: "糸満市西崎6-4-5 マルキヨ開発ビル F1" },
     position: { x: 7, y: 88 }, 
@@ -204,13 +213,17 @@ export const sponsors: Sponsor[] = [
 ]
 
 // shops 配列と attractions 配列から mapPoints を自動的に生成
-export const mapPoints: MapPoint[] = shops.map((shop) => {
-  const attraction = attractions.find((attr) => attr.shopId === shop.id)
-  return {
-    // shop.idとattraction.idを組み合わせて、アプリケーション全体で一意なIDを生成する
-    id: `map-point-${shop.id}-${attraction!.id}`,
-    shop: shop,
-    attraction: attraction!, // shopIdが一致するattractionは必ず存在すると仮定
-    position: shop.position,
-  }
-})
+export const mapPoints: MapPoint[] = shops
+  .map((shop) => {
+    const attraction = attractions.find((attr) => attr.shopId === shop.id)
+    if (!attraction) return null // attractionが見つからない場合はnullを返す
+
+    return {
+      id: `map-point-${shop.id}-${attraction.id}`,
+      shop: shop,
+      attraction: attraction,
+      position: shop.position,
+      region: shop.region,
+    }
+  })
+  .filter((point): point is MapPoint => point !== null) // nullを除外して型を保証

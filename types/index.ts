@@ -3,6 +3,7 @@ export interface Shop {
   name: string
   description: string
   image: string
+  region: "north" | "central" | "south"
   location: {
     address: string
   }
@@ -40,4 +41,5 @@ export interface MapPoint {
     x: number 
     y: number
   }
+  region: "north" | "central" | "south"
 }
