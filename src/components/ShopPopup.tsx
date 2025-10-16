@@ -1,21 +1,23 @@
 "use client"
 
 import { useState } from "react"
-import type { Shop, RegionAttraction } from "../../types"
+import type { MapPoint } from "../../types"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import Image from "next/image"
+import ImagePlaceholder from "@/components/ImagePlaceholder"
+import { Instagram } from "lucide-react"
 
 interface ShopPopupProps {
-  shop: Shop
-  attraction: RegionAttraction
+  point: MapPoint
   onClose: () => void
 }
 
-export default function ShopPopup({ shop, attraction, onClose }: ShopPopupProps) {
+export default function ShopPopup({ point, onClose }: ShopPopupProps) {
   const [activeTab, setActiveTab] = useState<"shop" | "attraction">("shop")
+  const { shop, attraction } = point
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -45,8 +47,17 @@ export default function ShopPopup({ shop, attraction, onClose }: ShopPopupProps)
         <CardContent>
           {activeTab === "shop" ? (
             <div className="space-y-4">
-              <div className="relative h-48 w-full rounded-lg overflow-hidden">
-                <Image src={shop.image || "/placeholder.svg"} alt={shop.name} fill className="object-cover" />
+              <div className="relative aspect-video w-full rounded-lg overflow-hidden">
+                {shop.image ? (
+                  <Image
+                    src={shop.image}
+                    alt={shop.name}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <ImagePlaceholder />
+                )}
               </div>
 
               <div>
@@ -54,17 +65,6 @@ export default function ShopPopup({ shop, attraction, onClose }: ShopPopupProps)
                 <p className="text-muted-foreground mb-4">{shop.description}</p>
 
                 <div className="space-y-3">
-                  <div>
-                    <h4 className="font-semibold mb-2">おすすめメニュー</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {shop.specialties.map((specialty, index) => (
-                        <Badge key={index} variant="secondary">
-                          {specialty}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="font-semibold">📍 住所:</span>
@@ -80,6 +80,16 @@ export default function ShopPopup({ shop, attraction, onClose }: ShopPopupProps)
                         <p className="text-muted-foreground">{shop.phone}</p>
                       </div>
                     )}
+                    {shop.snsUrl && (
+                      <div>
+                        <span className="font-semibold flex items-center gap-1">
+                          <Instagram className="h-4 w-4" /> SNS:
+                        </span>
+                        <Link href={shop.snsUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all text-sm">
+                          {shop.snsUrl}
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -91,33 +101,39 @@ export default function ShopPopup({ shop, attraction, onClose }: ShopPopupProps)
               </div>
             </div>
           ) : (
-            <div className="space-y-4">
-              <div className="relative h-48 w-full rounded-lg overflow-hidden">
-                <Image
-                  src={attraction.image || "/placeholder.svg"}
-                  alt={attraction.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <CardTitle className="text-xl">{attraction.title}</CardTitle>
-                  <Badge variant="outline">
-                    {attraction.category === "nature" && "🌿 自然"}
-                    {attraction.category === "culture" && "🏛️ 文化"}
-                    {attraction.category === "food" && "🍽️ グルメ"}
-                    {attraction.category === "activity" && "🎯 アクティビティ"}
-                  </Badge>
+            attraction && (
+              <div className="space-y-4">
+                <div className="relative aspect-video w-full rounded-lg overflow-hidden">
+                  {attraction.image ? (
+                    <Image
+                      src={attraction.image}
+                      alt={attraction.title}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <ImagePlaceholder />
+                  )}
                 </div>
-                <p className="text-muted-foreground mb-4">{attraction.description}</p>
-
-                <Link href={`/appeal/${attraction.id}`}>
-                  <Button className="w-full">もっと詳しく</Button>
-                </Link>
+  
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <CardTitle className="text-xl">{attraction.title}</CardTitle>
+                    <Badge variant="outline">
+                      {attraction.category === "nature" && "🌿 自然"}
+                      {attraction.category === "culture" && "🏛️ 文化"}
+                      {attraction.category === "food" && "🍽️ グルメ"}
+                      {attraction.category === "activity" && "🎯 アクティビティ"}
+                    </Badge>
+                  </div>
+                  <p className="text-muted-foreground mb-4">{attraction.description}</p>
+  
+                  <Link href={`/appeal/${attraction.id}`}>
+                    <Button className="w-full">もっと詳しく</Button>
+                  </Link>
+                </div>
               </div>
-            </div>
+            )
           )}
         </CardContent>
       </Card>

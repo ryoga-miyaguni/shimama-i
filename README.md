@@ -1,8 +1,8 @@
-# しままーい (Shimama-i) - 沖縄タコススタンプラリー
+# 沖縄タコススタンプラリー
 
 沖縄のソウルフードであるタコスを通じて、島の新たな魅力を発見するスタンプラリーイベントの公式Webサイトです。このプロジェクトは、特に大学生を中心とした沖縄の若者に、食文化を楽しみながら地元を再発見してもらうことを目的としています。
 
-[![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FUSERNAME%2FREPOSITORY)
+[デプロイ先](https://shimama-i.vercel.app/)
 
 ## 🌺 イベント概要
 
@@ -28,37 +28,6 @@
 - **UIコンポーネント**: Shadcn UI
 - **フォント**: Noto Sans JP (via `next/font`)
 - **Lint/Format**: ESLint
-
-## 🚀 環境構築と実行方法
-
-1.  **リポジトリのクローン:**
-    ```bash
-    git clone https://github.com/USERNAME/REPOSITORY.git
-    cd REPOSITORY
-    ```
-
-2.  **依存関係のインストール:**
-    ```bash
-    npm install
-    ```
-
-3.  **開発サーバーの起動:**
-    ```bash
-    npm run dev
-    ```
-
-    ブラウザで http://localhost:3000 を開くと、アプリケーションが表示されます。
-
-### その他のコマンド
-
-- **本番用ビルド:**
-  ```bash
-  npm run build
-  ```
-- **Lintチェック:**
-  ```bash
-  npm run lint
-  ```
 
 ## 📂 ディレクトリ構造
 

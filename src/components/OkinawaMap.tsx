@@ -1,16 +1,38 @@
 "use client"
 
 import type { MapPoint } from "../../types"
-import { mapPoints } from "@/lib/data"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import GooeyCard from "./GooeyCard"
 
 interface OkinawaMapProps {
+  points: MapPoint[];
   onPointSelect: (point: MapPoint | null) => void;
+  isMobile: boolean;
 }
 
-export default function OkinawaMap({ onPointSelect }: OkinawaMapProps) {
+const regionColorClasses = {
+  north: {
+    bg: "bg-green-500",
+    ring: "focus:ring-green-500",
+    ping: "bg-green-500",
+  },
+  central: {
+    bg: "bg-red-500",
+    ring: "focus:ring-red-500",
+    ping: "bg-red-500",
+  },
+  south: {
+    bg: "bg-yellow-500",
+    ring: "focus:ring-yellow-500",
+    ping: "bg-yellow-500",
+  },
+}; 
+
+export default function OkinawaMap({ points, onPointSelect, isMobile }: OkinawaMapProps) {
+  const handlePinClick = (point: MapPoint) => {
+    if (!isMobile) onPointSelect(point)
+  }
   return (
     <section
       id="map" className="relative py-16 mt-24 md:mt-32"
@@ -41,44 +63,55 @@ export default function OkinawaMap({ onPointSelect }: OkinawaMapProps) {
             />
 
             {/* マップポイント */}
-            {mapPoints.map((point) => (
-                <button
+            {points.map((point) => {
+              const color = regionColorClasses[point.region] || regionColorClasses.central;
+              return (
+                <div
                   key={point.id}
                   className="absolute transform -translate-x-1/2 -translate-y-1/2 group z-10"
                   style={{
                     left: `${point.position.x}%`,
                     top: `${point.position.y}%`,
                   }}
-                  onClick={() => onPointSelect(point)}
                 >
-                  <div className="relative">
+                  <div className="relative flex items-center justify-center">
                     {/* ピンのデザイン */}
-                    <div className="w-10 h-10 bg-red-500 rounded-full border-4 border-white shadow-lg group-hover:scale-110 transition-transform animate-bounce flex items-center justify-center">
-                      <span className="text-white text-xl font-bold">🌮</span>
-                      <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
-                    </div>
+                    <button onClick={() => handlePinClick(point)} className={`relative w-8 h-8 md:w-10 md:h-10 ${color.bg} rounded-full border-2 md:border-4 border-white shadow-lg group-hover:scale-110 transition-transform animate-bounce flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 ${color.ring}`}>
+                      <span className="text-white text-base md:text-xl font-bold">🌮</span>
+                      {/* アニメーション用のdivも色を合わせる */}
+                      <div className={`absolute inset-0 ${color.ping} rounded-full animate-ping opacity-75`}></div>
+                    </button>
 
                     {/* 店舗名のツールチップ */}
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-white text-gray-800 text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-200">
                       <div className="font-semibold">{point.shop.name}</div>
-                      <div className="text-xs text-gray-600">{point.shop.location.address}</div>
+                      <div className="text-xs text-gray-600">
+                        {point.shop.location.address.split(/[市町村]/)[0] + point.shop.location.address.match(/[市町村]/)}
+                      </div>
                       {/* ツールチップの矢印 */}
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white"></div>
                     </div>
                   </div>
-                </button>
-              ))}
+                </div>
+              );
+            })}
           </div>
         </Card>
         
-        <div className="flex justify-center mt-4">
+        <div className="hidden md:flex justify-center mt-4">
           <Card className="p-4 shadow-2xl border-primary/10">
-            <div className="flex items-center space-x-4 text-sm gap-0">
+            <div className="flex items-center space-x-6 text-sm">
               <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs">🌮</span>
-                </div>
-                <span className="text-foreground font-medium">タコス店舗</span>
+                <div className={`w-5 h-5 ${regionColorClasses.north.bg} rounded-full`}></div>
+                <span className="text-foreground font-medium">北部</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className={`w-5 h-5 ${regionColorClasses.central.bg} rounded-full`}></div>
+                <span className="text-foreground font-medium">中部</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className={`w-5 h-5 ${regionColorClasses.south.bg} rounded-full`}></div>
+                <span className="text-foreground font-medium">南部</span>
               </div>
               <div className="text-muted-foreground">ピンをクリックで詳細表示</div>
             </div>
