@@ -3,7 +3,7 @@ import type { Shop, RegionAttraction, Sponsor, MapPoint } from "../../types"
 export const shops: Shop[] = [
   {
     id: "1",
-    name: "タコス・デ・オキナワ",
+    name: "タコス・デ・オキナワ  ※実際に存在する店舗ではありません。掲載イメージです。",
     description: "沖縄の新鮮な食材を使った本格的なタコスが自慢のお店です。",
     image: "/colorful-tacos-with-okinawan-ingredients.png",
     location: {
