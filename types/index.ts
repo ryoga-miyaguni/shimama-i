@@ -40,4 +40,5 @@ export interface MapPoint {
     x: number // percentage from left
     y: number // percentage from top
   }
+  region?: "north" | "central" | "south"
 }
