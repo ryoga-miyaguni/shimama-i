@@ -3,7 +3,7 @@ import type { Shop, RegionAttraction, Sponsor, MapPoint } from "../../types"
 export const shops: Shop[] = [
   {
     id: "1",
-    name: "タコス・デ・オキナワ  ※実際に存在する店舗ではありません（掲載イメージです）",
+    name: "タコス・デ・オキナワ  ※実際に存在する店舗ではありません。掲載イメージです。",
     description: "沖縄の新鮮な食材を使った本格的なタコスが自慢のお店です。",
     region: "north",
     image: "/colorful-tacos-with-okinawan-ingredients.png",
@@ -226,4 +226,4 @@ export const mapPoints: MapPoint[] = shops
       region: shop.region,
     }
   })
-  .filter((point): point is MapPoint => point !== null) // nullを除外して型を保証
+  .filter((point): point is MapPoint => point !== null) as MapPoint[] // 型アサーションで型エラーを回避

@@ -46,17 +46,17 @@ export default function RegionShopList({ points, onShopSelect }: RegionShopListP
   return (
     <div className="container mx-auto px-4 -mt-12 relative z-20">
       <Card className="p-2">
-        <div className="grid grid-cols-3 gap-2 mb-2">
+        <div className="grid grid-cols-3 gap-2">
           {REGIONS.map((region) => (
             <Button
               key={region.id}
               variant={activeRegion === region.id ? "default" : "outline"}
               onClick={() => setActiveRegion(region.id)}
-              className={
+              className={`font-bold ${
                 activeRegion === region.id
                   ? `${regionColorClasses[region.id]} text-white hover:${regionColorClasses[region.id]}/90`
                   : ""
-              }
+              }`}
             >
               {region.name}
             </Button>

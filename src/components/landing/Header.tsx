@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { useSession, signIn, signOut } from "next-auth/react"
+import Image from "next/image"
+import { useSession, signOut } from "next-auth/react"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,8 +16,8 @@ import {
 import { ArrowLeft, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import useSWR from 'swr'
+import ContactForm from "../ContactForm"
 
-// stampcard/page.tsx から型定義をコピー
 interface UserProgress {
   userId: string;
   userName: string;
@@ -90,10 +91,15 @@ export default function Header() {
                 <span className="sr-only">戻る</span>
               </Button>
             )}
-            <Link href="/" className="flex items-center space-x-2">
-              <div>
-                <h1 className="text-xl font-bold text-foreground">タコスタ</h1>
-                <p className="hidden md:flex text-sm text-muted-foreground">2025年12月開催</p>
+            <Link href="/" className="flex items-center">
+              <div className="relative w-40 h-10 md:w-32 md:h-12">
+                <Image
+                  src="/logo.png"
+                  alt="タコスタ ロゴ"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
             </Link>
           </div>
@@ -130,6 +136,8 @@ export default function Header() {
               </NavigationMenuList>
             </NavigationMenu>
           </nav>
+
+          <ContactForm />
           
           {/* ログイン機能をコメントアウト */}
           {/* <div className="flex items-center gap-2">
