@@ -67,7 +67,7 @@ export const shops: Shop[] = [
     name: "カフェ マーメイド",
     description: "沖縄市の中心で味わう、スパイシーでジューシーなタコス。",
     region: "central",
-    image: "",
+    image: "/mermaid.png",
     location: { address: "中城村字久場1963 中城モール一階" },
     position: { x: 32, y: 72 }, 
     specialties: [""],
@@ -119,6 +119,7 @@ export const attractions: RegionAttraction[] = [
     title: "国際通り",
     description: "沖縄最大の繁華街で、お土産店やグルメスポットが立ち並ぶ観光の中心地です。",
     image: "/kokusai-street-okinawa-bustling-shopping-district.png",
+    position: { x: 20, y: 80 },
     category: "culture",
   },
   {
@@ -127,6 +128,7 @@ export const attractions: RegionAttraction[] = [
     title: "ナゴパイナップルパーク",
     description: "パイナップルについて学び、味わい、楽しめるテーマパーク。パイナップル号に乗って園内を冒険しよう。",
     image: "",
+    position: { x: 55, y: 33 },
     category: "activity",
   },
   {
@@ -135,6 +137,7 @@ export const attractions: RegionAttraction[] = [
     title: "道の駅かでな",
     description: "嘉手納基地の滑走路を一望できる展望台が人気。沖縄のお土産や特産品も揃っています。",
     image: "",
+    position: { x: 24, y: 57 },
     category: "nature",
   },
   {
@@ -143,6 +146,7 @@ export const attractions: RegionAttraction[] = [
     title: "コザミュージックタウン",
     description: "沖縄市の中心にある音楽の複合施設。ライブハウスやショップが集まっています。",
     image: "",
+    position: { x: 35, y: 63 },
     category: "culture",
   },
   {
@@ -151,6 +155,7 @@ export const attractions: RegionAttraction[] = [
     title: "美浜アメリカンビレッジ",
     description: "カラフルな建物が並ぶシーサイドタウン。ショッピングやグルメ、映画などが楽しめます。",
     image: "",
+    position: { x: 22, y: 67 },
     category: "culture",
   },
   {
@@ -159,6 +164,7 @@ export const attractions: RegionAttraction[] = [
     title: "中城城跡",
     description: "世界遺産の一つ。美しい曲線を描く城壁が特徴で、歴史と絶景を同時に楽しめます。",
     image: "",
+    position: { x: 35, y: 71 },
     category: "culture",
   },
   {
@@ -167,6 +173,7 @@ export const attractions: RegionAttraction[] = [
     title: "浦添大公園",
     description: "長大なローラー滑り台が人気の公園。歴史的な史跡も点在し、散策にも最適です。",
     image: "",
+    position: { x: 23, y: 75 },
     category: "culture",
   },
   {
@@ -175,6 +182,7 @@ export const attractions: RegionAttraction[] = [
     title: "斎場御嶽（せーふぁうたき）",
     description: "琉球王国最高の聖地とされる世界遺産。神秘的な雰囲気の中で自然の力を感じられます。",
     image: "",
+    position: { x: 30, y: 88 },
     category: "culture",
   },
   {
@@ -183,6 +191,7 @@ export const attractions: RegionAttraction[] = [
     title: "ひめゆりの塔",
     description: "沖縄戦の悲劇を伝える平和祈念施設。平和の尊さを学ぶことができます。",
     image: "",
+    position: { x: 10, y: 91 },
     category: "culture",
   },
 ]
