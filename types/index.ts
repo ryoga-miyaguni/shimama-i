@@ -21,6 +21,7 @@ export interface RegionAttraction {
   title: string
   description: string
   image: string
+  position: { x: number; y: number }
   category: "nature" | "culture" | "food" | "activity"
 }
 
