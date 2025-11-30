@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/landing/HeroSection"
 import { AboutSection } from "@/components/landing/AboutSection"
 import { MapSection } from "@/components/landing/MapSection"
-// import { SponsorsSection } from "@/components/landing/SponsorsSection"
+import { PrizeSection } from "@/components/landing/PrizeSection"
 
 export default function HomePage() {
   return (
@@ -10,7 +10,7 @@ export default function HomePage() {
       <MapSection />
       {/* <InstagramPost url="https://www.instagram.com/p/DOuplp-CYRR/" /> */}
       <AboutSection />
-      {/* <SponsorsSection /> */}
+      <PrizeSection />
     </div>
   )
 }

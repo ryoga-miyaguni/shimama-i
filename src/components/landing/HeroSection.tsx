@@ -45,7 +45,7 @@ export function HeroSection() {
         backgroundImage:
           "url(\"data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23fed7aa' /%3E%3Ccircle cx='40' cy='50' r='25' fill='%23ffedd5' fill-opacity='0.5'/%3E%3Ccircle cx='150' cy='80' r='40' fill='%23ffedd5' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='160' r='30' fill='%23ffedd5' fill-opacity='0.6'/%3E%3Ccircle cx='170' cy='170' r='20' fill='%23ffedd5' fill-opacity='0.5'/%3E%3C/svg%3E\")",
       }}
-      className="relative w-full h-[102vh] md:h-[110vh] pt-10 md:pt-16 -mb-[18vh] md:-mb-[20vh] [clip-path:url(#hero-bottom-wave)]"
+      className="relative w-full h-[115vh] md:h-[110vh] pt-10 md:pt-16 -mb-[18vh] md:-mb-[20vh] [clip-path:url(#hero-bottom-wave)]"
     >
       <div className="relative z-10">
         {/* カードコンテナ */}
@@ -92,6 +92,8 @@ export function HeroSection() {
               楽しみながらスタンプを集めて、
               <br className="md:hidden" />
               素敵な景品をゲットしよう！
+              <br />
+              開催期間：2025/12/1 ~ 2026/2/28
             </p>
           </div>
         </div>
