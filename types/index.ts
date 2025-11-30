@@ -7,7 +7,6 @@ export interface Shop {
   location: {
     address: string
   }
-  specialties: string[]
   hours: string
   phone?: string
   website?: string
@@ -22,7 +21,7 @@ export interface RegionAttraction {
   description: string
   image: string
   position: { x: number; y: number }
-  category: "nature" | "culture" | "food" | "activity"
+  category: "nature" | "culture" | "food" | "spot"
 }
 
 export interface Sponsor {

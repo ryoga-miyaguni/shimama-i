@@ -41,14 +41,15 @@ export default function ThanksPage() {
               このプロジェクトを支援してくださった皆様に、心より感謝申し上げます。
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-4 text-center">
+          <CardContent className="text-center">
+            ただいま準備中です。
+            {/* <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-4 text-center">
               {supporters.map((name, index) => (
                 <p key={index} className="text-foreground">
                   {name}
                 </p>
               ))}
-            </div>
+            </div> */}
           </CardContent>
           <CardFooter>
             <p className="w-full text-center text-sm text-muted-foreground">（順不同・敬称略）</p>

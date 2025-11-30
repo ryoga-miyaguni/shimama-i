@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
         <h2 className="text-xl font-semibold mt-6 mb-2">6. お問い合わせ窓口</h2>
         <p>
           本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。<br />
-          メールアドレス: info@okinawa-tacos-rally.com
+          メールアドレス: tacosta.okinawa@gmail.com
         </p>
       </div>
     </div>

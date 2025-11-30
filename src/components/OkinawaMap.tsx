@@ -5,8 +5,7 @@ import { Card } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import type { Dispatch, SetStateAction } from "react"
 import GooeyCard from "./GooeyCard"
-
-type PinType = "shops" | "attractions"
+type PinType = "shop" | "attraction"
 
 interface Pin {
   id: string;
@@ -17,7 +16,7 @@ interface Pin {
 }
 interface OkinawaMapProps {
   points: Pin[];
-  onPointSelect: (shopId: string | null) => void;
+  onPointSelect: (shopId: string | null, initialTab: PinType) => void;
   activeTab: PinType;
   onTabChange: Dispatch<SetStateAction<PinType>>;
   isMobile: boolean;
@@ -43,7 +42,7 @@ const regionColorClasses = {
 
 export default function OkinawaMap({ points, onPointSelect, isMobile, activeTab, onTabChange }: OkinawaMapProps) {
   const handlePinClick = (point: Pin) => {
-    if (!isMobile) onPointSelect(point.shopId)
+    if (!isMobile) onPointSelect(point.shopId, activeTab)
   }
   return (
     <section
@@ -66,10 +65,10 @@ export default function OkinawaMap({ points, onPointSelect, isMobile, activeTab,
               className="w-full"
             >
               <TabsList className="grid w-full grid-cols-2 rounded-full bg-gray-200/80 backdrop-blur-sm p-1 shadow-lg">
-                <TabsTrigger value="shops" className="rounded-full data-[state=active]:bg-emerald-400 data-[state=active]:text-gray-200 data-[state=active]:shadow-md text-base font-semibold">
+                <TabsTrigger value="shop" className="rounded-full data-[state=active]:bg-emerald-400 data-[state=active]:text-gray-200 data-[state=active]:shadow-md text-base font-semibold">
                   店舗
                 </TabsTrigger>
-                <TabsTrigger value="attractions" className="rounded-full data-[state=active]:bg-cyan-400 data-[state=active]:text-gray-200 data-[state=active]:shadow-md text-base font-semibold">
+                <TabsTrigger value="attraction" className="rounded-full data-[state=active]:bg-cyan-400 data-[state=active]:text-gray-200 data-[state=active]:shadow-md text-base font-semibold">
                   地域の魅力
                 </TabsTrigger>
               </TabsList>
