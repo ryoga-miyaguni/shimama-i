@@ -1,104 +1,96 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Ticket, MapPin, Gift } from "lucide-react"; 
+import GooeyCard from '../GooeyCard';
 
-export function AboutSection() {
+export const AboutSection = () => {
+  const steps = [
+    {
+      id: 1,
+      title: "スタンプカードを手に入れよう！",
+      description: (
+        <>
+          まずは参加店舗へ！<br />
+          お店の人に声をかけて<br />
+          スタンプカードを手に入れよう
+        </>
+      ),
+      icon: <Ticket className="w-8 h-8 text-orange-500" />,
+    },
+    {
+      id: 2,
+      title: "店舗を巡ってスタンプを集める！",
+      description: (
+        <>
+          お店はどの順番で回ってもOK！<br className='md-50'/>
+          <span className="block mt-4">
+          <span className='font-bold'>スタンプ押印のルール</span>
+          <br />
+          1.お会計一回につき、スタンプは一人一個まで<br />
+          2.タコス１ピースのつき、一人一個スタンプが押せます<br />
+          3.テイクアウトでもOK！
+          </span>
+        </>
+      ),
+      icon: <MapPin className="w-8 h-8 text-orange-500" />,
+    },
+    {
+      id: 3,
+      title: "景品に応募しよう！",
+      description: (
+        <>
+          スタンプが貯まったら<br />
+          お店の人にカードを提出しよう！<br />
+          提出はどの参加店舗でもOK！<br />
+          <span className="block mt-4">
+          イベント終了後、運営から景品応募フォームが<br />
+          届くので、それに回答したら応募完了<br />
+          結果発表待とう！
+          </span>
+        </>
+      ),
+      icon: <Gift className="w-8 h-8 text-orange-500" />,
+    },
+  ];
+
   return (
-    <section id="about" className="py-16 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-foreground mb-4">イベント概要</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            2024年12月開催!沖縄の美味しいタコスを巡る楽しいスタンプラリーです
-          </p>
-        </div>
+    <section className="py-16 px-4 max-w-6xl mx-auto">
+      <div className="text-center">
+        <GooeyCard
+          className="bg-red-600 mb-5"
+          contentClassName="top-[41%] md:top-[43%] left-[50%] md:left-[51%] -translate-x-1/2 text-center"
+        >
+          <h3 className="text-4xl md:text-7xl font-bold whitespace-nowrap">参加方法</h3>
+        </GooeyCard>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="text-center">
-            <CardHeader>
-              <div className="text-4xl mb-2" aria-hidden="true">📅</div>
-              <CardTitle>開催期間</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                2025年12月1日〜2月28日
-              </p>
-            </CardContent>
-          </Card>
+      <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map((step) => (
+          <div key={step.id} className="relative flex flex-col items-center">
+            <div className="w-16 h-16 rounded-full bg-orange-100 border-4 border-white flex items-center justify-center mb-6 shadow-sm z-10">
+              <span className="text-xl font-bold text-orange-600">
+                {step.id}
+              </span>
+            </div>
 
-          <Card className="text-center">
-            <CardHeader>
-              <div className="text-4xl mb-2" aria-hidden="true">🌮</div>
-              <CardTitle>参加店舗</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                沖縄県内15店舗の厳選タコス店
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center">
-            <CardHeader>
-              <div className="text-4xl mb-2" aria-hidden="true">🎁</div>
-              <CardTitle>特典</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                スタンプ集めで素敵な景品
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="text-center">
-            <CardHeader>
-              <div className="text-4xl mb-2" aria-hidden="true">👥</div>
-              <CardTitle>参加費</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                参加費無料
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="mt-12 max-w-3xl mx-auto">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-center">参加方法</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-start space-x-4">
-                <Badge className="mt-1">1</Badge>
-                <div>
-                  <h4 className="font-semibold">スタンプカードGET</h4>
-                  <p className="text-muted-foreground text-sm">
-                    参加店舗へ行って、スタンプカードを受け取ろう
-                  </p>
+            <Card className="w-full h-full text-center hover:shadow-lg transition-shadow duration-300 border-orange-100 bg-white/90 backdrop-blur-sm">
+              <CardHeader className="pt-6 pb-2">
+                <div className="flex justify-center mb-4">
+                  {step.icon}
                 </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <Badge className="mt-1">2</Badge>
-                <div>
-                  <h4 className="font-semibold">店舗巡り</h4>
-                  <p className="text-muted-foreground text-sm">
-                    タコスを注文し、スタンプを集めよう
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <Badge className="mt-1">3</Badge>
-                <div>
-                  <h4 className="font-semibold">景品ゲット</h4>
-                  <p className="text-muted-foreground text-sm">
-                    規定数のスタンプを集めて、素敵な景品をもらおう
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+                <CardTitle className="text-xl font-bold text-gray-800">
+                  {step.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {step.description}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
       </div>
     </section>
-  )
-}
+  );
+};
