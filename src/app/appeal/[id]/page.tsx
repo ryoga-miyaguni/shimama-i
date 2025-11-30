@@ -54,10 +54,9 @@ export default async function AppealPage({ params }: AppealPageProps) {
                   {attraction.category === "nature" && "🌿 自然"}
                   {attraction.category === "culture" && "🏛️ 文化"}
                   {attraction.category === "food" && "🍽️ グルメ"}
-                  {attraction.category === "activity" && "🎯 アクティビティ"}
+                  {attraction.category === "spot" && "📍 スポット"}
                 </Badge>
               </div>
-              <p className="text-lg opacity-90">{attraction.description}</p>
             </div>
           </div>
 
@@ -100,7 +99,7 @@ export default async function AppealPage({ params }: AppealPageProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-col md:flex-row gap-4">
-                      <div className="relative h-32 w-full md:w-48 rounded-lg overflow-hidden flex-shrink-0">
+                      <div className="relative h-60 w-full md:w-90 rounded-lg overflow-hidden flex-shrink-0">
                         {relatedShop.image ? (
                           <Image
                             src={relatedShop.image}
@@ -115,13 +114,6 @@ export default async function AppealPage({ params }: AppealPageProps) {
                       <div className="flex-1">
                         <h4 className="text-lg font-semibold mb-2">{relatedShop.name}</h4>
                         <p className="text-muted-foreground mb-3">{relatedShop.description}</p>
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {relatedShop.specialties.slice(0, 2).map((specialty, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
-                              {specialty}
-                            </Badge>
-                          ))}
-                        </div>
                         <Link href={`/shops/${relatedShop.id}`}>
                           <Button variant="outline" size="sm">
                             店舗詳細を見る →
@@ -167,17 +159,6 @@ export default async function AppealPage({ params }: AppealPageProps) {
                       {attraction.category === "culture" ? "入場料が必要な場合があります" : "無料"}
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-primary/5 border-primary/20">
-                <CardHeader>
-                  <CardTitle className="text-lg text-center">スタンプラリー</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center space-y-3">
-                  <div className="text-4xl">📍</div>
-                  <p className="text-sm text-muted-foreground">この魅力スポットも巡って、沖縄の魅力を発見しよう！</p>
-                  <Button className="w-full">マップに戻る</Button>
                 </CardContent>
               </Card>
             </div>

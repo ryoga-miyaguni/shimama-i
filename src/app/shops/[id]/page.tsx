@@ -51,7 +51,6 @@ export default async function ShopPage({ params }: ShopPageProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute bottom-6 left-6 text-white">
               <h1 className="text-3xl md:text-4xl font-bold mb-2">{shop.name}</h1>
-              <p className="text-lg opacity-90">{shop.description}</p>
             </div>
           </div>
 
@@ -60,20 +59,10 @@ export default async function ShopPage({ params }: ShopPageProps) {
             <div className="lg:col-span-2 space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">🌮 おすすめメニュー</CardTitle>
+                  <CardTitle className="flex items-center gap-2">🌮 店舗紹介</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {shop.specialties.map((specialty, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 bg-secondary/30 rounded-lg">
-                        <div className="text-2xl">🌮</div>
-                        <div>
-                          <h4 className="font-semibold">{specialty}</h4>
-                          <p className="text-sm text-muted-foreground">人気メニュー</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <p className="text-lg opacity-90">{shop.description}</p>
                 </CardContent>
               </Card>
 
@@ -103,7 +92,7 @@ export default async function ShopPage({ params }: ShopPageProps) {
                             {relatedAttraction.category === "nature" && "🌿 自然"}
                             {relatedAttraction.category === "culture" && "🏛️ 文化"}
                             {relatedAttraction.category === "food" && "🍽️ グルメ"}
-                            {relatedAttraction.category === "activity" && "🎯 アクティビティ"}
+                            {relatedAttraction.category === "spot" && "📍 スポット"}
                           </Badge>
                         </div>
                         <p className="text-muted-foreground mb-3">{relatedAttraction.description}</p>
@@ -148,17 +137,18 @@ export default async function ShopPage({ params }: ShopPageProps) {
                       <p className="text-sm text-muted-foreground">{shop.phone}</p>
                     </div>
                   )}
-                </CardContent>
-              </Card>
 
-              <Card className="bg-primary/5 border-primary/20">
-                <CardHeader>
-                  <CardTitle className="text-lg text-center">スタンプラリー参加</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center space-y-3">
-                  <div className="text-4xl">🎯</div>
-                  <p className="text-sm text-muted-foreground">この店舗でタコスを注文してスタンプをゲット！</p>
-                  <Button className="w-full">スタンプカードを確認</Button>
+                  {shop.snsUrl && (
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-sm font-semibold">SNS</span>
+                      </div>
+                      <Link href={shop.snsUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline flex items-center gap-1">
+                        <Instagram className="h-4 w-4" />
+                        <span>アカウントを見る</span>
+                      </Link>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </div>

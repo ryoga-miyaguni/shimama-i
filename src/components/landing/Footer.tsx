@@ -9,22 +9,21 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4">沖縄タコススタンプラリー</h3>
             <p className="text-muted-foreground text-sm">
-              タコス巡りイベント。沖縄の美味しいタコスと地域の魅力を発見しよう！
+              沖縄県内のタコス店を巡るスタンプラリーイベント。沖縄の美味しいタコスと地域の魅力を発見しよう！
             </p>
           </div>
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">お問い合わせ</h4>
             <div className="text-sm text-muted-foreground space-y-2">
-              <p>📧 info@okinawa-tacos-rally.com</p>
-              <p>📱 098-XXX-XXXX</p>
+              <p>📧 tacosta.okinawa@gmail.com</p>
             </div>
           </div>
 
           <div>
             <h4 className="font-semibold text-foreground mb-4">開催期間</h4>
             <div className="text-sm text-muted-foreground">
-              <p>2025年12月1日〜2月28日</p>
+              <p>2025年12月1日〜2026年12月28日</p>
               <p>各店舗の営業時間内</p>
             </div>
           </div>

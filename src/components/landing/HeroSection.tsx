@@ -6,20 +6,28 @@ import { Card } from "@/components/ui/card"
 
 const backgroundImages = [
   {
-    src: "/beachside-taco-restaurant-with-ocean-view.png",
-    alt: "沖縄のビーチサイドにあるタコレストランの風景",
+    src: "/tankdiner.jpg",
+    alt: "tankdiner",
   },
   {
-    src: "/colorful-tacos-with-okinawan-ingredients.png",
-    alt: "沖縄の食材を使ったカラフルなタコス",
+    src: "/kourizima.jpg",
+    alt: "古宇利島",
   },
   {
-    src: "/manzamo-cliff-okinawa-scenic-ocean-view.png",
-    alt: "沖縄の万座毛の美しい風景",
+    src: "/ka-satacos.jpg",
+    alt: "カーサタコス",
+  },
+  {
+    src: "/nakagusuku.jpg",
+    alt: "中城城跡",
   },
   {
     src: "/parparo-v.jpg",
-    alt: "沖縄の万座毛の美しい風景",
+    alt: "沖縄の食材を使ったカラフルなタコス",
+  },
+  {
+    src: "/nakagami.jpg",
+    alt: "中頭方西海道",
   },
 ]
 
@@ -45,11 +53,11 @@ export function HeroSection() {
         backgroundImage:
           "url(\"data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23fed7aa' /%3E%3Ccircle cx='40' cy='50' r='25' fill='%23ffedd5' fill-opacity='0.5'/%3E%3Ccircle cx='150' cy='80' r='40' fill='%23ffedd5' fill-opacity='0.4'/%3E%3Ccircle cx='80' cy='160' r='30' fill='%23ffedd5' fill-opacity='0.6'/%3E%3Ccircle cx='170' cy='170' r='20' fill='%23ffedd5' fill-opacity='0.5'/%3E%3C/svg%3E\")",
       }}
-      className="relative w-full h-[115vh] md:h-[110vh] pt-10 md:pt-16 -mb-[18vh] md:-mb-[20vh] [clip-path:url(#hero-bottom-wave)]"
+      className="relative w-full pt-10 md:pt-16 pb-20 md:pb-30 -mb-[18vh] md:-mb-[20vh] [clip-path:url(#hero-bottom-wave)]"
     >
       <div className="relative z-10">
         {/* カードコンテナ */}
-        <div className="w-6/7 md:w-5/9 h-[50vh] md:h-[60vh] mx-auto">
+         <div className="w-6/7 md:w-5/9 h-[50vh] md:h-[60vh] mx-auto">
           <Card className="relative w-full h-full rounded-2xl overflow-hidden border-none p-0">
             {/* 背景画像スライドショー */}
             <div className="absolute inset-0">
@@ -74,8 +82,10 @@ export function HeroSection() {
         <div className="relative z-0 container mx-auto px-4 -mt-12 md:-mt-16">
           <div className="max-w-2xl mx-auto text-center pt-22 md:pt-24">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-balance leading-relaxed">
-              <span className="bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
-                タコススタンプラリー
+              <span className="bg-gradient-to-b from-orange-600 to-orange-400 bg-clip-text text-transparent">
+                タコス
+                <br className="md:hidden" />
+                スタンプラリー
               </span>
               <br />
               <span className="text-gray-800">

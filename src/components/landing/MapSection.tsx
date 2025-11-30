@@ -2,13 +2,14 @@
 
 import { useState, useEffect, useMemo } from "react"
 import OkinawaMap from "@/components/OkinawaMap"
+import RegionAttractionList from "@/components/RegionAttractionList"
 import ShopPopup from "@/components/ShopPopup"
 import RegionShopList from "@/components/RegionShopList"
 import type { MapPoint } from "../../../types"
 import { mapPoints, shops, attractions } from "@/lib/data"
 
 // 表示するピンのタイプを定義
-type PinType = "shops" | "attractions"
+type PinType = "shop" | "attraction"
 
 // 画面幅を判定するカスタムフック
 function useIsMobile(breakpoint = 768) {
@@ -27,8 +28,8 @@ function useIsMobile(breakpoint = 768) {
 }
 
 export function MapSection() {
-  const [selectedPoint, setSelectedPoint] = useState<MapPoint | null>(null)
-  const [activeTab, setActiveTab] = useState<PinType>("shops")
+  const [selectedPoint, setSelectedPoint] = useState<(MapPoint & { initialTab?: PinType }) | null>(null)
+  const [activeTab, setActiveTab] = useState<PinType>("shop")
   const isMobile = useIsMobile()
 
   // 表示するピンのデータを activeTab に応じて動的に選択
@@ -43,17 +44,17 @@ export function MapSection() {
     }))
   }, [activeTab])
 
-  const handlePointSelect = (shopId: string | null) => {
+  const handlePointSelect = (shopId: string | null, initialTab: PinType = "shop") => {
     if (shopId === null) {
       setSelectedPoint(null)
       return
     }
     // shopId を使って、ShopPopup が必要とする完全な MapPoint オブジェクトを検索
     const point = mapPoints.find((p) => p.shop.id === shopId)
-    setSelectedPoint(point || null)
+    setSelectedPoint(point ? { ...point, initialTab } : null)
   }
 
-  // RegionShopListからの選択を処理するラッパー関数
+  // RegionShopListからの選択を処理するラッパー関数（店舗タブ固定）
   const handleRegionShopSelect = (point: MapPoint) => {
     handlePointSelect(point.shop.id)
   }
@@ -63,13 +64,17 @@ export function MapSection() {
       <OkinawaMap points={pinsToDisplay} onPointSelect={handlePointSelect} isMobile={isMobile} activeTab={activeTab} onTabChange={setActiveTab} />
 
       {isMobile && (
-        // モバイルのリスト表示は現状 mapPoints を使っているため、店舗のみ表示されます
-        <RegionShopList points={mapPoints} onShopSelect={handleRegionShopSelect} />
+        activeTab === "shop" ? (
+          <RegionShopList points={mapPoints} onShopSelect={handleRegionShopSelect} />
+        ) : (
+          <RegionAttractionList attractions={attractions} shops={shops} onAttractionSelect={(shopId) => handlePointSelect(shopId, "attraction")} />
+        )
       )}
 
       {selectedPoint && (
         <ShopPopup
           point={selectedPoint}
+          initialTab={selectedPoint.initialTab}
           onClose={() => setSelectedPoint(null)}
         />
       )}

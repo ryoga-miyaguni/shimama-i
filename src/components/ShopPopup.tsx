@@ -13,11 +13,12 @@ import { Instagram } from "lucide-react"
 interface ShopPopupProps {
   point: MapPoint
   onClose: () => void
+  initialTab?: "shop" | "attraction"
 }
 
-export default function ShopPopup({ point, onClose }: ShopPopupProps) {
-  const [activeTab, setActiveTab] = useState<"shop" | "attraction">("shop")
+export default function ShopPopup({ point, onClose, initialTab = "shop" }: ShopPopupProps) {
   const { shop, attraction } = point
+  const [activeTab, setActiveTab] = useState<"shop" | "attraction">(initialTab)
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -47,7 +48,7 @@ export default function ShopPopup({ point, onClose }: ShopPopupProps) {
         <CardContent>
           {activeTab === "shop" ? (
             <div className="space-y-4">
-              <div className="relative aspect-video w-full rounded-lg overflow-hidden">
+              <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden">
                 {shop.image ? (
                   <Image
                     src={shop.image}
@@ -80,22 +81,12 @@ export default function ShopPopup({ point, onClose }: ShopPopupProps) {
                         <p className="text-muted-foreground">{shop.phone}</p>
                       </div>
                     )}
-                    {shop.snsUrl && (
-                      <div>
-                        <span className="font-semibold flex items-center gap-1">
-                          <Instagram className="h-4 w-4" /> SNS:
-                        </span>
-                        <Link href={shop.snsUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all text-sm">
-                          {shop.snsUrl}
-                        </Link>
-                      </div>
-                    )}
                   </div>
                 </div>
 
-                <div className="flex gap-2 mt-4">
+                <div className="gap-2 mt-4">
                   <Link href={`/shops/${shop.id}`}>
-                    <Button className="flex-1">詳細を見る</Button>
+                    <Button className="w-full">詳細を見る</Button>
                   </Link>
                 </div>
               </div>
@@ -103,7 +94,7 @@ export default function ShopPopup({ point, onClose }: ShopPopupProps) {
           ) : (
             attraction && (
               <div className="space-y-4">
-                <div className="relative aspect-video w-full rounded-lg overflow-hidden">
+                <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden">
                   {attraction.image ? (
                     <Image
                       src={attraction.image}
@@ -123,7 +114,7 @@ export default function ShopPopup({ point, onClose }: ShopPopupProps) {
                       {attraction.category === "nature" && "🌿 自然"}
                       {attraction.category === "culture" && "🏛️ 文化"}
                       {attraction.category === "food" && "🍽️ グルメ"}
-                      {attraction.category === "activity" && "🎯 アクティビティ"}
+                      {attraction.category === "spot" && "📍 スポット"}
                     </Badge>
                   </div>
                   <p className="text-muted-foreground mb-4">{attraction.description}</p>

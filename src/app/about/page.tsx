@@ -7,7 +7,7 @@ export default function AboutPage() {
       <div className="mt-8 border p-4 rounded-md">
         <h2 className="text-xl font-semibold mb-2">このサイトについて</h2>
         <p className="text-gray-700">このサイトは、沖縄タコススタンプラリーに関する情報を提供するサイトです。これから色々な情報を共有していきます。</p>
-        <p className="text-sm text-gray-500 mt-2">投稿日: 2024年1月2日</p>
+        <p className="text-sm text-gray-500 mt-2">投稿日: 2025年12月1日</p>
       </div>
     </div>
   );
