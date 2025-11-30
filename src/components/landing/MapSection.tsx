@@ -34,7 +34,7 @@ export function MapSection() {
 
   // 表示するピンのデータを activeTab に応じて動的に選択
   const pinsToDisplay = useMemo(() => {
-    const data = activeTab === "shops" ? shops : attractions
+    const data = activeTab === "shop" ? shops : attractions
     return data.map((item) => ({
       id: item.id,
       shopId: "shopId" in item ? item.shopId : item.id, 
