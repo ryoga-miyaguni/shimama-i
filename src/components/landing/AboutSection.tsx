@@ -7,7 +7,13 @@ export const AboutSection = () => {
   const steps = [
     {
       id: 1,
-      title: "スタンプカードを手に入れよう！",
+      title: (
+        <>
+          スタンプカードを
+          <br className="md:hidden" />
+          手に入れよう！
+        </>
+      ),
       description: (
         <>
           まずは参加店舗へ！<br />
@@ -19,7 +25,13 @@ export const AboutSection = () => {
     },
     {
       id: 2,
-      title: "店舗を巡ってスタンプを集める！",
+      title: (
+        <>
+          店舗を巡って
+          <br className="md:hidden" />
+          スタンプを集める！
+        </>
+      ),
       description: (
         <>
           お店はどの順番で回ってもOK！<br className='md-50'/>
@@ -43,8 +55,10 @@ export const AboutSection = () => {
           お店の人にカードを提出しよう！<br />
           提出はどの参加店舗でもOK！<br />
           <span className="block mt-4">
-            イベント終了後、運営から景品応募フォームが<br />
-            届くので、それに回答したら応募完了<br />
+            イベント終了後、運営から
+            <br className="md:hidden" />
+            景品応募フォームが届きます<br />
+            それに回答したら応募完了<br />
             結果発表を待とう！
           </span>
         </>
