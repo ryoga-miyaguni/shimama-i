@@ -8,6 +8,7 @@ import { GlobalMenu } from "@/components/GlobalMenu";
 import { Suspense } from "react";
 import "./globals.css";
 import Loading from "@/components/Loading";
+import { Analytics } from "@vercel/analytics/react";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -59,8 +60,8 @@ export default function RootLayout({
           <Toaster />
           <GlobalMenu />
         </Providers>
+        <Analytics />
       </body>
-
     </html>
   );
 }
