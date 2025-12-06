@@ -91,6 +91,7 @@ model Post {
   title     String
   content   String   // 本文
   imageUrl  String?  // 画像のURL (なくてもいいので ? をつける)
+  category  String   @default("blog")
   createdAt DateTime @default(now()) // 投稿日
   updatedAt DateTime @updatedAt      // 更新日
 }
