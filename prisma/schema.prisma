@@ -84,3 +84,13 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+// ブログ記事用のモデル
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String   // 本文
+  imageUrl  String?  // 画像のURL (なくてもいいので ? をつける)
+  createdAt DateTime @default(now()) // 投稿日
+  updatedAt DateTime @updatedAt      // 更新日
+}
