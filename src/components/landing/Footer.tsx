@@ -23,7 +23,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">開催期間</h4>
             <div className="text-sm text-muted-foreground">
-              <p>2025年12月1日〜2026年12月28日</p>
+              <p>2025年12月1日〜2026年2月28日</p>
               <p>各店舗の営業時間内</p>
             </div>
           </div>
