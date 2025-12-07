@@ -69,26 +69,6 @@ export default async function AppealPage({ params }: AppealPageProps) {
                 </CardHeader>
                 <CardContent className="prose prose-sm max-w-none">
                   <p className="text-muted-foreground leading-relaxed">{attraction.description}</p>
-
-                  {attraction.category === "culture" && (
-                    <div className="mt-6 p-4 bg-secondary/30 rounded-lg">
-                      <h4 className="font-semibold mb-2 flex items-center gap-2">🏛️ 文化的価値</h4>
-                      <p className="text-sm text-muted-foreground">
-                        沖縄の豊かな歴史と文化を感じることができる貴重なスポットです。
-                        地域の伝統や歴史的背景を学びながら、現代に受け継がれる文化の価値を体感できます。
-                      </p>
-                    </div>
-                  )}
-
-                  {attraction.category === "nature" && (
-                    <div className="mt-6 p-4 bg-secondary/30 rounded-lg">
-                      <h4 className="font-semibold mb-2 flex items-center gap-2">🌿 自然の魅力</h4>
-                      <p className="text-sm text-muted-foreground">
-                        沖縄の美しい自然環境を満喫できるスポットです。 四季を通じて異なる表情を見せる自然の美しさと、
-                        そこに息づく生命の営みを感じることができます。
-                      </p>
-                    </div>
-                  )}
                 </CardContent>
               </Card>
 
@@ -127,7 +107,7 @@ export default async function AppealPage({ params }: AppealPageProps) {
             </div>
 
             {/* サイドバー */}
-            <div className="space-y-6">
+            {/* <div className="space-y-6">
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">アクセス情報</CardTitle>
@@ -161,7 +141,7 @@ export default async function AppealPage({ params }: AppealPageProps) {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
