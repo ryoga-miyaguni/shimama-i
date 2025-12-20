@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import Loading from "@/components/Loading";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -61,6 +62,7 @@ export default function RootLayout({
           <GlobalMenu />
         </Providers>
         <Analytics />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
       </body>
     </html>
   );
