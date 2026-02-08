@@ -41,29 +41,29 @@ export function GlobalMenu() {
               <Home className="h-5 w-5" />
               <span>ホーム</span>
             </Link>
-            <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
-              <Newspaper className="h-5 w-5" />
-              <span>ブログ</span>
-            </Link>
             <Link href="/about" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
               <User className="h-5 w-5" />
               <span>自己紹介</span>
             </Link>
-            <Link href="/reports" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
+            {/* <Link href="/reports" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
               <Megaphone className="h-5 w-5" />
               <span>活動報告</span>
-            </Link>
+            </Link> */}
             <Link href="/thanks" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
               <Heart className="h-5 w-5" />
               <span>スペシャル
                 <br/>サンクス
               </span>
             </Link>
+            {/* <Link href="/blog" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
+              <Newspaper className="h-5 w-5" />
+              <span>ブログ</span>
+            </Link> */}
             <div className="border-t my-1"></div>
-            <Link href="/help" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
+            {/* <Link href="/help" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
               <HelpCircle className="h-5 w-5" />
               <span>ヘルプ</span>
-            </Link>
+            </Link> */}
             <Link href="/privacy" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-3 text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground rounded-sm px-3 py-2 transition-colors">
               <Shield className="h-5 w-5" />
               <span>プライバシー</span>

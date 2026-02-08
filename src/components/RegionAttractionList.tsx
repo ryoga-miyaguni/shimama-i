@@ -62,7 +62,7 @@ export default function RegionAttractionList({ attractions, shops, onAttractionS
           {activeRegionAttractions.map((attraction) => (
             <Card key={attraction.id} className="p-3 cursor-pointer hover:bg-accent" onClick={() => onAttractionSelect(attraction.shopId)}>
               <p className="font-semibold leading-tight">{attraction.title}</p>
-              <p className="text-xs text-muted-foreground">{attraction.description.substring(0, 40)}...</p>
+              <p className="text-xs text-muted-foreground">{typeof attraction.description === "string" ? attraction.description.substring(0, 40) : attraction.description}...</p>
             </Card>
           ))}
         </div>

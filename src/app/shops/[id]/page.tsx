@@ -57,14 +57,17 @@ export default async function ShopPage({ params }: ShopPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* メイン情報 */}
             <div className="lg:col-span-2 space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">🌮 店舗紹介</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg opacity-90">{shop.description}</p>
-                </CardContent>
-              </Card>
+
+              {shop.detail && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">🌮 店舗紹介</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-base leading-relaxed">{shop.detail}</div>
+                  </CardContent>
+                </Card>
+              )}
 
               {relatedAttraction && (
                 <Card>
