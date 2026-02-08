@@ -65,10 +65,10 @@ export default async function AppealPage({ params }: AppealPageProps) {
             <div className="lg:col-span-2 space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">✨ 魅力の詳細</CardTitle>
+                  <CardTitle className="flex items-center gap-2">✨ 魅力紹介</CardTitle>
                 </CardHeader>
                 <CardContent className="prose prose-sm max-w-none">
-                  <p className="text-muted-foreground leading-relaxed">{attraction.description}</p>
+                  <div className="text-muted-foreground leading-relaxed">{attraction.detail}</div>
                 </CardContent>
               </Card>
 

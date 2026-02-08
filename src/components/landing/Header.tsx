@@ -109,30 +109,39 @@ export default function Header() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/#map" className={navigationMenuTriggerStyle()}>
-                      参加店舗
+                    <Link href="/about" className={navigationMenuTriggerStyle()}>
+                      自己紹介
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
-                    <Link href="/blog" className={navigationMenuTriggerStyle()}>
-                      ブログ
+                    <Link href="/thanks" className={navigationMenuTriggerStyle()}>
+                      スペシャルサンクス
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link href="/privacy" className={navigationMenuTriggerStyle()}>
+                      プライバシーポリシー
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>このサイトについて</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[200px] lg:w-[250px]">
                       <li><NavigationMenuLink asChild><Link href="/about">自己紹介</Link></NavigationMenuLink></li>
+                      <li><NavigationMenuLink asChild><Link href="/blog">ブログ</Link></NavigationMenuLink></li>
                       <li><NavigationMenuLink asChild><Link href="/reports">活動報告</Link></NavigationMenuLink></li>
                       <li><NavigationMenuLink asChild><Link href="/thanks">スペシャルサンクス</Link></NavigationMenuLink></li>
                       <li><NavigationMenuLink asChild><Link href="/help">ヘルプ</Link></NavigationMenuLink></li>
-                      <li className="border-t pt-2 mt-2"><NavigationMenuLink asChild><Link href="/privacy">プライバシーポリシー</Link></NavigationMenuLink></li>
+                      <li><NavigationMenuLink asChild><Link href="/privacy">プライバシーポリシー</Link></NavigationMenuLink></li>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
               </NavigationMenuList>
             </NavigationMenu>
           </nav>
